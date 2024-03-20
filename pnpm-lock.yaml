@@ -9,8 +9,8 @@ dependencies:
     specifier: ^8.4.2
     version: 8.4.2
   '@lcap/nasl-unified-frontend-generator':
-    specifier: 0.0.0-beta.2
-    version: 0.0.0-beta.2
+    specifier: 0.0.0-beta.3
+    version: 0.0.0-beta.3
   '@ts-rest/core':
     specifier: ^3.30.5
     version: 3.30.5(zod@3.22.4)
@@ -708,8 +708,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
-  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.2:
-    resolution: {integrity: sha512-BBJsqr0l4JfyPTKDegVvniTYgpxUS/o2QLEliUsMFyXQcxioW2/Q7a5nccCc9BNZShPMnK9eT+/SVxm58JoEDw==}
+  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.3:
+    resolution: {integrity: sha512-k8wr/7cKX3ycCZzcQwmPVdIt6gcoU6oGX9WuoO3vEZdS5/slrNQohMzrcUzDnTxcCPObyosmrjdW4tI1Q8oDPA==}
     dependencies:
       '@abraham/reflection': 0.12.0
       '@codesandbox/sandpack-client': 2.13.2
