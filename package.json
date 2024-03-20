@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "clean": "rm -rf template/node_modules && rm -rf out/*",
-    "dev":"npm run server",
+    "dev": "npm run translate",
     "server": "npm run clean && ts-node ./src/app.ts",
     "translate": "nodemon --config nodemon.json"
   },
