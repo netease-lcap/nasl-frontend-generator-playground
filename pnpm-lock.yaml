@@ -9,8 +9,8 @@ dependencies:
     specifier: ^8.4.2
     version: 8.4.2
   '@lcap/nasl-unified-frontend-generator':
-    specifier: 0.0.0-beta.3
-    version: 0.0.0-beta.3
+    specifier: 0.0.0-beta.4
+    version: 0.0.0-beta.4
   '@ts-rest/core':
     specifier: ^3.30.5
     version: 3.30.5(zod@3.22.4)
@@ -420,23 +420,6 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@codesandbox/nodebox@0.1.8:
-    resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
-    dependencies:
-      outvariant: 1.4.0
-      strict-event-emitter: 0.4.6
-    dev: false
-
-  /@codesandbox/sandpack-client@2.13.2:
-    resolution: {integrity: sha512-uAuxQOF7p8y4m7H0ojedDcWRf62xVK7UIYIJoX5LkhcV0SW1BTXcRkVNuR0/MSCSv+Og1dBeV8+Xpye9PX0quA==}
-    dependencies:
-      '@codesandbox/nodebox': 0.1.8
-      buffer: 6.0.3
-      dequal: 2.0.3
-      outvariant: 1.4.0
-      static-browser-server: 1.0.3
-    dev: false
-
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
@@ -708,11 +691,10 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
-  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.3:
-    resolution: {integrity: sha512-k8wr/7cKX3ycCZzcQwmPVdIt6gcoU6oGX9WuoO3vEZdS5/slrNQohMzrcUzDnTxcCPObyosmrjdW4tI1Q8oDPA==}
+  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.4:
+    resolution: {integrity: sha512-msu16CbwFnSVzujIUqbsBo01I3pHYbVE/L8OyoxmPNr8gfaqiHUdxHpfYKPLtjEeG7p0HNwDQaX4tlANxInD0Q==}
     dependencies:
       '@abraham/reflection': 0.12.0
-      '@codesandbox/sandpack-client': 2.13.2
       '@lcap/nasl': 3.7.0-beta.12
       html-escaper: 3.0.3
       inversify: 6.0.2
@@ -757,10 +739,6 @@ packages:
       - debug
       - supports-color
       - utf-8-validate
-    dev: false
-
-  /@open-draft/deferred-promise@2.2.0:
-    resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
     dev: false
 
   /@rollup/rollup-android-arm-eabi@4.6.1:
@@ -1334,11 +1312,6 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
-  /dequal@2.0.3:
-    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
-    engines: {node: '>=6'}
-    dev: false
-
   /destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
@@ -1349,11 +1322,6 @@ packages:
     dependencies:
       asap: r2.cnpmjs.org/asap@2.0.6
       wrappy: r2.cnpmjs.org/wrappy@1.0.2
-    dev: false
-
-  /dotenv@16.4.5:
-    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
-    engines: {node: '>=12'}
     dev: false
 
   /electron-to-chromium@1.4.711:
@@ -1932,10 +1900,6 @@ packages:
       wrappy: 1.0.2
     dev: false
 
-  /outvariant@1.4.0:
-    resolution: {integrity: sha512-AlWY719RF02ujitly7Kk/0QlV+pXGFDHrHf9O2OKqyqgBieaPOIeuSkL8sRK6j2WK+/ZAURq2kZsY0d8JapUiw==}
-    dev: false
-
   /parseqs@0.0.6:
     resolution: {integrity: sha512-jeAGzMDbfSHHA091hr0r31eYfTig+29g3GKKE/PPbEQ65X0lmMwlEoqmhzu0iztID5uJpZsFlUPDP8ThPL7M8w==}
     dev: false
@@ -2281,19 +2245,6 @@ packages:
   /split2@4.2.0:
     resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
     engines: {node: '>= 10.x'}
-    dev: false
-
-  /static-browser-server@1.0.3:
-    resolution: {integrity: sha512-ZUyfgGDdFRbZGGJQ1YhiM930Yczz5VlbJObrQLlk24+qNHVQx4OlLcYswEUo3bIyNAbQUIUR9Yr5/Hqjzqb4zA==}
-    dependencies:
-      '@open-draft/deferred-promise': 2.2.0
-      dotenv: 16.4.5
-      mime-db: 1.52.0
-      outvariant: 1.4.0
-    dev: false
-
-  /strict-event-emitter@0.4.6:
-    resolution: {integrity: sha512-12KWeb+wixJohmnwNFerbyiBrAlq5qJLwIt38etRtKtmmHyDSoGlIqFE9wx+4IwG0aDjI7GV8tc8ZccjWZZtTg==}
     dev: false
 
   /strip-json-comments@3.1.1:
