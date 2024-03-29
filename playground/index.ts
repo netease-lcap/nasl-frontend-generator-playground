@@ -1,4 +1,5 @@
 import {
+  FileSystemPlugin,
   Generator,
   GeneratorInfrastructureDomain,
   JavaScriptDomain,
@@ -25,6 +26,11 @@ container
 container
   .bind<NASLDomain.IRBuilder>(ServiceMetaKind.IRBuilder)
   .to(NASLAppIRBuilderPlugin);
+container
+  .bind<GeneratorInfrastructureDomain.FileSystemProvider>(
+    ServiceMetaKind.FileSystemProvider
+  )
+  .to(FileSystemPlugin);
 container
   .bind<JavaScriptDomain.FrontendApplicationDomain.MicroFrontendManager>(
     ServiceMetaKind.MicroFrontendManager
@@ -57,8 +63,9 @@ function setUpEslint() {
   const logger = Logger("自定义生命周期插件");
   class MyLifeCycleHooksPlugin extends LifeCycleHooksPlugin {
     afterAllFilesGenerated(): void {
+      logger.info("afterAllFilesGenerated");
       const files = Object.keys(this.fileSystemProvider.toJSON());
-      logger.info(files);
+      logger.info({ files });
     }
   }
   container
