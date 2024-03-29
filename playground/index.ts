@@ -1,14 +1,16 @@
 import {
+  Generator,
+  GeneratorInfrastructureDomain,
+  JavaScriptDomain,
+  LifeCycleHooksPlugin,
+  Logger,
   MicroFrontendPlugin,
   NASLAppIRBuilderPlugin,
+  NASLDomain,
   PlacedFile,
   ProjectOrganizerPlugin,
   ReactPresetPlugin,
   ServiceMetaKind,
-  Logger,
-  Generator,
-  NASLDomain,
-  JavaScriptDomain,
 } from "@lcap/nasl-unified-frontend-generator";
 import { startDemoTranslation } from "@lcap/nasl-unified-frontend-generator/playground";
 import { Container } from "inversify";
@@ -51,7 +53,23 @@ function changeProjectLayout() {
   };
 }
 
+function setUpEslint() {
+  const logger = Logger("自定义生命周期插件");
+  class MyLifeCycleHooksPlugin extends LifeCycleHooksPlugin {
+    afterAllFilesGenerated(): void {
+      const files = Object.keys(this.fileSystemProvider.toJSON());
+      logger.info(files);
+    }
+  }
+  container
+    .bind<GeneratorInfrastructureDomain.CodeGenerationLifecycleHooks>(
+      ServiceMetaKind.CodeGenerationLifecycleHooks
+    )
+    .to(MyLifeCycleHooksPlugin);
+}
+
 changeProjectLayout();
+setUpEslint();
 
 // 在做完插件修改后，启动Demo的翻译
 startDemoTranslation(container).catch((error) => {
