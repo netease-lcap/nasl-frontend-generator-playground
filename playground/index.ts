@@ -29,24 +29,29 @@ container
   )
   .to(MicroFrontendPlugin);
 
-/**
- * 修改文件移动方法
- */
-ProjectOrganizerPlugin.prototype.moveFilesAsYouWant = async function (
-  placedFiles: PlacedFile[]
-) {
-  const logger = Logger("moveFilesAsYouWant");
-  for (const f of placedFiles) {
-    const originalViewFolderMark = `/__views__/`;
-    if (f.originalAbsolutePath.includes(originalViewFolderMark)) {
-      const to = f.getFolder().replace(originalViewFolderMark, "/views/");
-      logger.info(
-        `move ${f.originalAbsolutePath} from ${f.getFolder()} to ${to}`
-      );
+function changeProjectLayout() {
+  const originalViewFolderMark = `/__views__/`;
+
+  /**
+   * 修改文件移动方法
+   *
+   * 可以直接修改插件原型上的方法来修改插件的行为
+   */
+  ProjectOrganizerPlugin.prototype.moveFilesAsYouWant = async function (
+    placedFiles: PlacedFile[]
+  ) {
+    const logger = Logger("自定义移动");
+    placedFiles.forEach((f) => {
+      const to = f.getFolder().replace(originalViewFolderMark, "/pages/");
       f.moveFileTo(to);
-    }
-  }
-};
+      logger.info(
+        `将 ${f.originalAbsolutePath} 移动到 ${f.currentAbsolutePath}`
+      );
+    });
+  };
+}
+
+changeProjectLayout();
 
 // 在做完插件修改后，启动Demo的翻译
 startDemoTranslation(container).catch((error) => {
