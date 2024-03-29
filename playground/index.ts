@@ -1,14 +1,14 @@
 import {
-  IRBuilder,
-  MicroFrontendManager,
   MicroFrontendPlugin,
   NASLAppIRBuilderPlugin,
-  NASLTranspiler,
   PlacedFile,
   ProjectOrganizerPlugin,
   ReactPresetPlugin,
   ServiceMetaKind,
   Logger,
+  Generator,
+  NASLDomain,
+  JavaScriptDomain,
 } from "@lcap/nasl-unified-frontend-generator";
 import { startDemoTranslation } from "@lcap/nasl-unified-frontend-generator/dist/playground";
 import { Container } from "inversify";
@@ -18,11 +18,11 @@ import { Container } from "inversify";
  */
 const container = new Container();
 container
-  .bind<NASLTranspiler>(ServiceMetaKind.NASLTranspiler)
+  .bind<Generator.NASLTranspiler>(ServiceMetaKind.NASLTranspiler)
   .to(ReactPresetPlugin);
-container.bind<IRBuilder>(ServiceMetaKind.IRBuilder).to(NASLAppIRBuilderPlugin);
+container.bind<NASLDomain.IRBuilder>(ServiceMetaKind.IRBuilder).to(NASLAppIRBuilderPlugin);
 container
-  .bind<MicroFrontendManager>(ServiceMetaKind.MicroFrontendManager)
+  .bind<JavaScriptDomain.FrontendApplicationDomain.MicroFrontendManager>(ServiceMetaKind.MicroFrontendManager)
   .to(MicroFrontendPlugin);
 
 /**
