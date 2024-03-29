@@ -1,16 +1,11 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "Node16",
     "esModuleInterop": true,
     "target": "es2021",
-    "moduleResolution": "node",
+    "moduleResolution": "Node16",
     "sourceMap": true,
-    "outDir": "dist",
-    "paths": {
-      "@lcap/nasl-unified-frontend-generator/playground": [
-        "./node_modules/@lcap/nasl-unified-frontend-generator/dist/playground.js"
-      ]
-    }
+    "outDir": "dist"
   },
   "lib": ["es2021"]
 }
