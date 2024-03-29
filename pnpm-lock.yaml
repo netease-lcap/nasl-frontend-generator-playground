@@ -9,8 +9,8 @@ dependencies:
     specifier: ^8.4.2
     version: 8.4.2
   '@lcap/nasl-unified-frontend-generator':
-    specifier: 0.0.0-beta.4
-    version: 0.0.0-beta.4
+    specifier: file:.yalc/@lcap/nasl-unified-frontend-generator
+    version: file:.yalc/@lcap/nasl-unified-frontend-generator
   '@ts-rest/core':
     specifier: ^3.30.5
     version: 3.30.5(zod@3.22.4)
@@ -691,27 +691,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
-  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.4:
-    resolution: {integrity: sha512-msu16CbwFnSVzujIUqbsBo01I3pHYbVE/L8OyoxmPNr8gfaqiHUdxHpfYKPLtjEeG7p0HNwDQaX4tlANxInD0Q==}
-    dependencies:
-      '@abraham/reflection': 0.12.0
-      '@lcap/nasl': 3.7.0-beta.12
-      html-escaper: 3.0.3
-      inversify: 6.0.2
-      json5: 2.2.3
-      pino: 8.19.0
-      postcss: 8.4.32
-      postcss-js: 4.0.1(postcss@8.4.32)
-      prettier: 2.8.8
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - supports-color
-      - utf-8-validate
-    dev: false
-
-  /@lcap/nasl@3.7.0-beta.12:
-    resolution: {integrity: sha512-E3sRWUn4JsU1giIO2JJVaRw7tP3Dt8LwHoN4pU4WRXxYXslgBpZcBdtb0nn/xIFfYgulLj2YNYD/Lydguht1YA==}
+  /@lcap/nasl@3.7.1-beta.1:
+    resolution: {integrity: sha512-1xVurpyHBE7DE8bOAZ6kf9d/Jk34zIt6/l3/cMfkjofzSelU+4z0k+6XjPMJ4RNUph5kKsd8rzYd51rcYbGvXQ==}
     engines: {node: '>=16.20'}
     dependencies:
       '@babel/core': 7.22.15
@@ -1810,6 +1791,13 @@ packages:
       yallist: 3.1.1
     dev: false
 
+  /memfs@4.8.0:
+    resolution: {integrity: sha512-fcs7trFxZlOMadmTw5nyfOwS3il9pr3y+6xzLfXNwmuR/D0i4wz6rJURxArAbcJDGalbpbMvQ/IFI0NojRZgRg==}
+    engines: {node: '>= 4.0.0'}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
   /mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
@@ -2310,6 +2298,10 @@ packages:
       yn: r2.cnpmjs.org/yn@3.1.1
     dev: false
 
+  /tslib@2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+    dev: false
+
   /typescript@5.4.0-dev.20231207:
     resolution: {integrity: sha512-9OsUooJnRMwemgmnZVwLewnl3XzbEj61obef4BbooBr9w9L7i0ILMDYHAwQnYsxx/LLpw1+mvbDl30jO48mReA==}
     engines: {node: '>=14.17'}
@@ -2434,6 +2426,28 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
+
+  file:.yalc/@lcap/nasl-unified-frontend-generator:
+    resolution: {directory: .yalc/@lcap/nasl-unified-frontend-generator, type: directory}
+    name: '@lcap/nasl-unified-frontend-generator'
+    dependencies:
+      '@abraham/reflection': 0.12.0
+      '@lcap/nasl': 3.7.1-beta.1
+      html-escaper: 3.0.3
+      inversify: 6.0.2
+      json5: 2.2.3
+      lodash: 4.17.21
+      memfs: 4.8.0
+      pino: 8.19.0
+      postcss: 8.4.32
+      postcss-js: 4.0.1(postcss@8.4.32)
+      prettier: 2.8.8
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
+      - utf-8-validate
     dev: false
 
   r2.cnpmjs.org/abbrev@1.1.1:
