@@ -109,8 +109,9 @@ function setUpEslint() {
       super(fileSystemProvider);
     }
     afterAllFilesGenerated(): void {
-      const logger = Logger("自定义生命周期插件");
-      // 写入eslint相关配置
+      const logger = Logger("自定义Lint插件");
+
+      logger.info("写入eslint配置");
       this.fileSystemProvider.write(
         "/eslint.config.js",
         dedent`
@@ -119,6 +120,7 @@ function setUpEslint() {
           }
           `
       );
+      logger.info("在package.json中添加依赖");
       this.npmPackageJSONPlugin.patch({
         devDependencies: {
           eslint: "^7.32.0",
