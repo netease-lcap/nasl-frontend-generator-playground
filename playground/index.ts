@@ -43,7 +43,6 @@ container
 
 function changeProjectLayout() {
   const originalViewFolderMark = `/__views__/`;
-
   /**
    * 修改文件移动方法
    *
@@ -128,6 +127,12 @@ function setUpEslint() {
           );
           `
       );
+      this.fileSystemProvider.write(
+        "/.eslintignore",
+        dedent`
+          src/packages/**/*.js
+        `
+      );
       logger.info("在package.json中添加依赖");
       this.npmPackageJSONPlugin.patch({
         devDependencies: {
@@ -139,7 +144,7 @@ function setUpEslint() {
       logger.info("在package.json中添加eslint启动脚本");
       this.npmPackageJSONPlugin.patch({
         scripts: {
-          lint: "pnpm eslint .",
+          lint: "pnpm eslint --fix",
         },
       });
       const res = this.fileSystemProvider.read("/package.json");
