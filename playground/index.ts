@@ -86,7 +86,10 @@ class NpmPackageJSONPlugin {
   }
 
   private writePkg(pkg: PackageJSON) {
-    this.fileSystemProvider.write(this.packageJSONPath, JSON.stringify(pkg));
+    this.fileSystemProvider.write(
+      this.packageJSONPath,
+      JSON.stringify(pkg, null, 2)
+    );
   }
 
   patch(obj: {}) {
@@ -113,18 +116,30 @@ function setUpEslint() {
 
       logger.info("写入eslint配置");
       this.fileSystemProvider.write(
-        "/eslint.config.js",
+        "/eslint.config.mjs",
         dedent`
-          module.exports  = {
-            "extends": ["eslint:recommended", "plugin:react/recommended"]
-          }
+          // @ts-check
+          import eslint from '@eslint/js';
+          import tseslint from 'typescript-eslint';
+
+          export default tseslint.config(
+            eslint.configs.recommended,
+            ...tseslint.configs.recommended,
+          );
           `
       );
       logger.info("在package.json中添加依赖");
       this.npmPackageJSONPlugin.patch({
         devDependencies: {
-          eslint: "^7.32.0",
-          "eslint-plugin-react": "^7.26.1",
+          eslint: "8.57.0",
+          typescript: "5.4.3",
+          "typescript-eslint": "7.4.0",
+        },
+      });
+      logger.info("在package.json中添加eslint启动脚本");
+      this.npmPackageJSONPlugin.patch({
+        scripts: {
+          lint: "pnpm eslint .",
         },
       });
       const res = this.fileSystemProvider.read("/package.json");
