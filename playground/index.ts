@@ -1,4 +1,3 @@
-import "@abraham/reflection";
 import { makeDefaultContainer } from "@lcap/nasl-unified-frontend-generator";
 import { startDemoTranslation } from "@lcap/nasl-unified-frontend-generator/playground";
 import { setupEslint } from "./customization/custom-eslint";
