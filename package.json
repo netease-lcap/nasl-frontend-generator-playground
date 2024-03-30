@@ -24,6 +24,7 @@
     "@types/node": "^20.10.4",
     "@types/prettier": "^3.0.0",
     "cors": "^2.8.5",
+    "dedent": "^1.5.1",
     "express": "^4.18.2",
     "fastify": "^4.24.3",
     "fs-extra": "^11.2.0",

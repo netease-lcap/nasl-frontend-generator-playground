@@ -15,6 +15,7 @@ import {
 } from "@lcap/nasl-unified-frontend-generator";
 import { startDemoTranslation } from "@lcap/nasl-unified-frontend-generator/playground";
 import { Container } from "inversify";
+import dedent from "dedent";
 
 /**
  * 默认容器
@@ -69,8 +70,15 @@ function setUpEslint() {
     .to(
       class MyLifeCycleHooksPlugin extends LifeCycleHooksPlugin {
         afterAllFilesGenerated(): void {
-          const files = Object.keys(this.fileSystemProvider.toJSON());
-          logger.info({ files }, "afterAllFilesGenerated");
+          // 写入eslint相关配置
+          this.fileSystemProvider.write(
+            "/eslint.config.js",
+            dedent`
+          module.exports  = {
+            "extends": ["eslint:recommended", "plugin:react/recommended"]
+          }
+          `
+          );
         }
       }
     );
