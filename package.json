@@ -8,7 +8,8 @@
     "clean": "rm -rf template/node_modules && rm -rf out/*",
     "dev": "npm run translate",
     "server": "npm run clean && ts-node ./src/app.ts",
-    "translate": "nodemon --config nodemon.json"
+    "translate": "nodemon --config nodemon.json",
+    "postyalc": "pnpm i"
   },
   "keywords": [],
   "author": "",

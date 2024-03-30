@@ -30,7 +30,8 @@ container
   .bind<GeneratorInfrastructureDomain.FileSystemProvider>(
     ServiceMetaKind.FileSystemProvider
   )
-  .to(FileSystemPlugin);
+  .to(FileSystemPlugin)
+  .inSingletonScope();
 container
   .bind<JavaScriptDomain.FrontendApplicationDomain.MicroFrontendManager>(
     ServiceMetaKind.MicroFrontendManager
@@ -61,18 +62,18 @@ function changeProjectLayout() {
 
 function setUpEslint() {
   const logger = Logger("自定义生命周期插件");
-  class MyLifeCycleHooksPlugin extends LifeCycleHooksPlugin {
-    afterAllFilesGenerated(): void {
-      logger.info("afterAllFilesGenerated");
-      const files = Object.keys(this.fileSystemProvider.toJSON());
-      logger.info({ files });
-    }
-  }
   container
     .bind<GeneratorInfrastructureDomain.CodeGenerationLifecycleHooks>(
       ServiceMetaKind.CodeGenerationLifecycleHooks
     )
-    .to(MyLifeCycleHooksPlugin);
+    .to(
+      class MyLifeCycleHooksPlugin extends LifeCycleHooksPlugin {
+        afterAllFilesGenerated(): void {
+          const files = Object.keys(this.fileSystemProvider.toJSON());
+          logger.info({ files }, "afterAllFilesGenerated");
+        }
+      }
+    );
 }
 
 changeProjectLayout();
