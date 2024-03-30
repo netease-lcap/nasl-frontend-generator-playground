@@ -1,5 +1,5 @@
 {
   "watch": ["playground"],
   "ext": "ts,tsx,json,js,jsx",
-  "exec": "ts-node ./playground/index.ts"
+  "exec": "pnpm clean && ts-node ./playground/index.ts"
 }

@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "clean": "rm -rf template/node_modules && rm -rf out/*",
+    "clean": "rimraf out/*",
     "dev": "npm run translate",
     "server": "npm run clean && ts-node ./src/app.ts",
     "translate": "nodemon --config nodemon.json",
@@ -34,6 +34,7 @@
     "koa-router": "^12.0.1",
     "lodash": "^4.17.21",
     "pino-pretty": "^10.3.1",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "5.4.0-dev.20231207",
     "vite": "^5.0.6",
