@@ -11,7 +11,7 @@ import {
   NpmPackageJSONPlugin,
 } from "./npm-package-plugin";
 
-export function setUpEslint(container: Container) {
+export function setupEslint(container: Container) {
   @injectable()
   class MyEslintPlugin extends LifeCycleHooksPlugin {
     constructor(

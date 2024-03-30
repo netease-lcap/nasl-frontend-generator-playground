@@ -5,7 +5,7 @@ import {
 } from "@lcap/nasl-unified-frontend-generator";
 import { Container } from "inversify";
 
-export function setUpProjectLayout(container: Container) {
+export function setupProjectLayout(container: Container) {
   const old = ProjectOrganizerPlugin.prototype.moveFilesAsYouWant;
   /**
    * 修改文件移动方法
