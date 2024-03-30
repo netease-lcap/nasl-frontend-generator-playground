@@ -16,8 +16,11 @@ import {
 } from "@lcap/nasl-unified-frontend-generator";
 import { startDemoTranslation } from "@lcap/nasl-unified-frontend-generator/playground";
 import dedent from "dedent";
-import { Container, injectable, inject } from "inversify";
-import { merge } from "lodash";
+import { Container, inject, injectable } from "inversify";
+import {
+  NpmPackageJSONPlugin,
+  NpmPackageJSONPluginSymbol,
+} from "./npm-package-plugin";
 
 /**
  * 默认容器
@@ -61,43 +64,6 @@ function changeProjectLayout() {
       logger.info(`将 ${oldPath} 移动到 ${f.currentAbsolutePath}`);
     });
   };
-}
-
-type PackageJSON = Record<string, any>;
-
-const NpmPackageJSONPluginSymbol = Symbol.for("NpmPackageJSONPlugin");
-@injectable()
-class NpmPackageJSONPlugin {
-  constructor(
-    @inject(ServiceMetaKind.FileSystemProvider)
-    private fileSystemProvider: GeneratorInfrastructureDomain.FileSystemProvider
-  ) {}
-
-  private packageJSONPath = "/package.json";
-
-  private readPkg(): PackageJSON | undefined {
-    try {
-      const pkg = this.fileSystemProvider.read(this.packageJSONPath);
-      if (pkg) {
-        return JSON.parse(pkg);
-      }
-    } catch (error) {}
-    return undefined;
-  }
-
-  private writePkg(pkg: PackageJSON) {
-    this.fileSystemProvider.write(
-      this.packageJSONPath,
-      JSON.stringify(pkg, null, 2)
-    );
-  }
-
-  patch(obj: {}) {
-    const pkg = this.readPkg() ?? {};
-    // recursively merge obj to pkg
-    merge(pkg, obj);
-    this.writePkg(pkg);
-  }
 }
 
 function setUpEslint() {
