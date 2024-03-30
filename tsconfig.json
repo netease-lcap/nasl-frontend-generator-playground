@@ -4,8 +4,11 @@
     "esModuleInterop": true,
     "target": "es2021",
     "moduleResolution": "Node16",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "strict": true
   },
   "lib": ["es2021"]
 }
