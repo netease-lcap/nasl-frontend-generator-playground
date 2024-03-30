@@ -42,7 +42,7 @@ container
   .to(MicroFrontendPlugin);
 
 function changeProjectLayout() {
-  const originalViewFolderMark = `/__views__/`;
+  const old = ProjectOrganizerPlugin.prototype.moveFilesAsYouWant;
   /**
    * 修改文件移动方法
    *
@@ -51,13 +51,14 @@ function changeProjectLayout() {
   ProjectOrganizerPlugin.prototype.moveFilesAsYouWant = async function (
     placedFiles: PlacedFile[]
   ) {
+    // 调用默认的移动逻辑
+    old.call(this, placedFiles);
     const logger = Logger("自定义移动");
     placedFiles.forEach((f) => {
-      const to = f.getFolder().replace(originalViewFolderMark, "/pages/");
+      const oldPath = f.currentAbsolutePath;
+      const to = f.getFolder().replace("/src/pages/", "/src/views/");
       f.moveFileTo(to);
-      logger.info(
-        `将 ${f.originalAbsolutePath} 移动到 ${f.currentAbsolutePath}`
-      );
+      logger.info(`将 ${oldPath} 移动到 ${f.currentAbsolutePath}`);
     });
   };
 }
