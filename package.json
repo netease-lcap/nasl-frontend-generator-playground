@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/cors": "^8.4.2",
-    "@lcap/nasl-unified-frontend-generator": "0.0.0-beta.25",
+    "@lcap/nasl-unified-frontend-generator": "0.0.0-beta.27",
     "@ts-rest/core": "^3.30.5",
     "@ts-rest/fastify": "^3.30.5",
     "@types/koa": "^2.13.12",
@@ -41,6 +41,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",
     "nodemon": "^3.0.2"
   }

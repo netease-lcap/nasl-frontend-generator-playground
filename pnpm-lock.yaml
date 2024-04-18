@@ -9,8 +9,8 @@ dependencies:
     specifier: ^8.4.2
     version: 8.4.2
   '@lcap/nasl-unified-frontend-generator':
-    specifier: 0.0.0-beta.25
-    version: 0.0.0-beta.25
+    specifier: 0.0.0-beta.27
+    version: 0.0.0-beta.27
   '@ts-rest/core':
     specifier: ^3.30.5
     version: 3.30.5(zod@3.22.4)
@@ -79,6 +79,9 @@ dependencies:
     version: 3.22.4
 
 devDependencies:
+  '@types/fs-extra':
+    specifier: ^11.0.4
+    version: 11.0.4
   '@types/lodash':
     specifier: ^4.17.0
     version: 4.17.0
@@ -756,8 +759,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.25:
-    resolution: {integrity: sha512-49fMvqm28zCSd9SHj2DSb+Ugqmpxws7/oGTti3xtBV1ixri/LZbeMotsnwvcycE0Z7RDqGWUe5+NurvVJV8Alg==}
+  /@lcap/nasl-unified-frontend-generator@0.0.0-beta.27:
+    resolution: {integrity: sha512-cQUN/YsPaL48r4z6xEf5Ldkwsd4gCowwKfON7RzBddGMgIA/Xu+3a29rG8bh/eA7fnOlLW0bOTPKdhBgW50RJg==}
     dependencies:
       '@abraham/reflection': 0.12.0
       '@lcap/nasl': 3.8.0-beta.1
@@ -767,8 +770,8 @@ packages:
       lodash: 4.17.21
       memfs: 4.8.0
       pino: 8.19.0
-      postcss: 8.4.32
-      postcss-js: 4.0.1(postcss@8.4.32)
+      postcss: 8.4.35
+      postcss-js: 4.0.1(postcss@8.4.35)
       prettier: 2.8.8
     transitivePeerDependencies:
       - bufferutil
@@ -1098,6 +1101,13 @@ packages:
       '@types/node': 20.10.4
     dev: false
 
+  /@types/fs-extra@11.0.4:
+    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+    dependencies:
+      '@types/jsonfile': 6.1.4
+      '@types/node': 20.10.4
+    dev: true
+
   /@types/http-assert@1.5.5:
     resolution: {integrity: sha512-4+tE/lwdAahgZT1g30Jkdm9PzFRde0xwxBNUyRsCitRvCQB90iuA2uJYdUnhnANRcqGXaWOGY4FEoxeElNAK2g==}
     dev: false
@@ -1105,6 +1115,12 @@ packages:
   /@types/http-errors@2.0.4:
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
     dev: false
+
+  /@types/jsonfile@6.1.4:
+    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
+    dependencies:
+      '@types/node': 20.10.4
+    dev: true
 
   /@types/keygrip@1.0.6:
     resolution: {integrity: sha512-lZuNAY9xeJt7Bx4t4dx0rYCDqGPW8RXhQZK1td7d4H6E9zYbLoOtjBvfwdTKpsyxQI/2jv+armjX/RW+ZNpXOQ==}
@@ -1151,7 +1167,6 @@ packages:
     resolution: {integrity: sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==}
     dependencies:
       undici-types: 5.26.5
-    dev: false
 
   /@types/prettier@3.0.0:
     resolution: {integrity: sha512-mFMBfMOz8QxhYVbuINtswBp9VL2b4Y0QqYHwqLz3YbgtfAcat2Dl6Y1o4e22S/OVE6Ebl9m7wWiMT2lSbAs1wA==}
@@ -2290,16 +2305,6 @@ packages:
       thread-stream: 2.4.1
     dev: false
 
-  /postcss-js@4.0.1(postcss@8.4.32):
-    resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
-    engines: {node: ^12 || ^14 || >= 16}
-    peerDependencies:
-      postcss: ^8.4.21
-    dependencies:
-      camelcase-css: 2.0.1
-      postcss: 8.4.32
-    dev: false
-
   /postcss-js@4.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
@@ -2706,7 +2711,6 @@ packages:
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
-    dev: false
 
   /universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
