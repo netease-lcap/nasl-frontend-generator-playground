@@ -8,7 +8,7 @@
     "clean": "rimraf out/*",
     "dev": "npm run translate",
     "serve": "npm run clean && ts-node ./src/app.ts",
-    "translate": "nodemon --config nodemon.json",
+    "translate": "pnpm clean && ts-node ./playground/index.ts",
     "postyalc": "pnpm i"
   },
   "keywords": [],

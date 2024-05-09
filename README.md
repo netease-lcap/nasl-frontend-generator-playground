@@ -17,7 +17,7 @@ Playground项目分为两部分：
 ### 启动文件服务器
 
 ```
-pnpm run serve
+pnpm serve
 ```
 
 请注意同时只能启动一个文件服务器。
@@ -25,7 +25,7 @@ pnpm run serve
 ### 启动翻译入口
 
 ```
-pnpm run translate
+pnpm dev
 ```
 
 这个命令会执行`playground/index.ts`文件。并且在这个文件发生改动的时候重新进行翻译过程。
