@@ -17,7 +17,7 @@ Playground项目分为两部分：
 ### 启动文件服务器
 
 ```
-pnpm run server
+pnpm run serve
 ```
 
 请注意同时只能启动一个文件服务器。
