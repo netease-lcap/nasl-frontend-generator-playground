@@ -1,5 +1,4 @@
 import { App, Frontend, genBundleFiles } from "@lcap/nasl";
-import { getReleaseFormData } from "@lcap/nasl-core";
 
 async function compile() {
   // TODO read NASL from /workspace/src.json
