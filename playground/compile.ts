@@ -1,9 +1,9 @@
 import { App, Frontend } from "@lcap/nasl";
 
 async function compile() {
-  // read NASL from /workspace/src.json
+  // TODO read NASL from /workspace/src.json
   const app = new App();
-  // read FRONTENDS from env
+  // TODO read FRONTENDS from env
   const FRONTENDS = [
     {
       name: "pc",
