@@ -1108,7 +1108,7 @@ async function compile() {
       if (kind === "vue2") {
         (config as any).diffNodePaths = diffNodePaths;
         // 生成bundle文件，返回文件以及路径
-        const files = await genBundleFiles(app, frontend, config);
+        const files = await genBundleFiles(app, f, (config as any));
         res.push(...files);
       } else {
         // TODO react
