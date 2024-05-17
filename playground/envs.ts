@@ -1,5 +1,5 @@
 const annotatedNASLPath =
-  "/Users/suicca/workspace/nasl-frontend-generator-playground/playground/fixtures/02195780-b1da-450b-a95e-d93147f02d7c/annotation-zlib";
+  "/home/project/nasl-frontend-generator-playground/playground/fixtures/02195780-b1da-450b-a95e-d93147f02d7c/annotation-zlib";
 
 const FRONTENDS = [
   {
