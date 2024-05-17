@@ -1076,6 +1076,10 @@ logger.info("开始翻译");
 
 // @ts-expect-error TODO config 类型有问题
 translate(config).then(async (files) => {
+  logger.info(
+    files.map((x) => x.path),
+    "写入文件"
+  );
   // pick name from data
   await writeCode(files);
 });
