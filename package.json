@@ -6,17 +6,26 @@
   "scripts": {
     "start": "ts-node ./src/app.ts",
     "clean": "rimraf out/*",
-    "dev": "npm run translate",
+    "dev": "nodemon",
     "serve": "npm run clean && ts-node ./src/app.ts",
     "translate": "ts-node ./playground/index.ts",
     "postyalc": "pnpm i"
+  },
+  "nodemon": {
+    "watch": [
+      "src",
+      "playground"
+    ],
+    "ext": "ts",
+    "exec": "npm run translate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@fastify/cors": "^8.4.2",
-    "@lcap/nasl-unified-frontend-generator": "0.0.0-beta.35",
+    "@lcap/nasl": "3.8.0-beta.6",
+    "@lcap/nasl-unified-frontend-generator": "0.0.0-beta.41",
     "@ts-rest/core": "^3.30.5",
     "@ts-rest/fastify": "^3.30.5",
     "@types/koa": "^2.13.12",
@@ -32,6 +41,7 @@
     "koa": "^2.14.2",
     "koa-body": "^6.0.1",
     "koa-router": "^12.0.1",
+    "light-join": "^1.3.0",
     "lodash": "^4.17.21",
     "pino-pretty": "^10.3.1",
     "rimraf": "^5.0.5",
