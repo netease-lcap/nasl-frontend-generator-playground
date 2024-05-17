@@ -17,7 +17,7 @@
       "playground"
     ],
     "ext": "ts",
-    "exec": "npm run dev"
+    "exec": "npm run translate"
   },
   "keywords": [],
   "author": "",
