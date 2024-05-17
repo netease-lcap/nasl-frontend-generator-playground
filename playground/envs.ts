@@ -21,4 +21,5 @@ const FRONTENDS = [
 export const envs = {
   annotatedNASLPath,
   FRONTENDS,
+  debuggerServerPort: 3001,
 };

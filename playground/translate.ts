@@ -1,11 +1,12 @@
 import { Frontend, genBundleFiles } from "@lcap/nasl";
-import { CommonAppConfig, Logger } from "@lcap/nasl-unified-frontend-generator";
+import { CommonAppConfig } from "@lcap/nasl-unified-frontend-generator";
+import { lightJoin } from "light-join";
 import { envs } from "./envs";
 import { readNASLApp } from "./utils";
-import { lightJoin } from "light-join";
 
 // TODO 移动一下位置
 type NameContent = { name: string; content: string };
+type PathContent = { path: string; content: string };
 type DiffNodePath = string[];
 
 const diffNodePaths: DiffNodePath[] = [
@@ -17,11 +18,12 @@ const diffNodePaths: DiffNodePath[] = [
   ],
 ];
 
-async function compile(config: CommonAppConfig) {
-  const logger = Logger("compile");
+export async function translate(
+  config: CommonAppConfig
+): Promise<PathContent[]> {
   const app = await readNASLApp();
   // 上层比较出来的所有变更路径的数组
-  const res: NameContent[] = [];
+  const res: PathContent[] = [];
   const selectedFrontends = envs.FRONTENDS.filter((f) => f.selected);
   for (const f of selectedFrontends) {
     const path = `app.frontendTypes[name=${f.name}].frontends[name=${f.name}]`;
@@ -46,7 +48,7 @@ async function compile(config: CommonAppConfig) {
               name.replace(startingMarks, "")
             );
             return {
-              name: normalizedName,
+              path: normalizedName,
               content,
             };
           });
@@ -66,5 +68,3 @@ async function compile(config: CommonAppConfig) {
   }
   return res;
 }
-
-export default compile;
