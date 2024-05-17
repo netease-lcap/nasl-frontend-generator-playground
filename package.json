@@ -6,18 +6,10 @@
   "scripts": {
     "start": "ts-node ./src/app.ts",
     "clean": "rimraf out/*",
-    "dev": "nodemon",
+    "dev": "nodemon -e ts --exec 'npm run translate'",
     "serve": "npm run clean && ts-node ./src/app.ts",
-    "translate": "ts-node ./playground/index.ts",
+    "translate": "ts-node ./playground/debug.ts",
     "postyalc": "pnpm i"
-  },
-  "nodemon": {
-    "watch": [
-      "src",
-      "playground"
-    ],
-    "ext": "ts",
-    "exec": "npm run translate"
   },
   "keywords": [],
   "author": "",
