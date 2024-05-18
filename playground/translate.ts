@@ -24,7 +24,7 @@ export async function translate(
   const app = await readNASLApp();
   // 上层比较出来的所有变更路径的数组
   const res: PathContent[] = [];
-  const selectedFrontends = envs.FRONTENDS.filter((f) => f.selected);
+  const selectedFrontends = envs.frontendOptions.filter((f) => f.selected);
   for (const f of selectedFrontends) {
     const path = `app.frontendTypes[name=${f.name}].frontends[name=${f.name}]`;
     const frontendNode: Frontend | undefined = app.findNodeByPath(path);

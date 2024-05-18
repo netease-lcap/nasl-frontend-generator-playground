@@ -3,25 +3,24 @@ if (!NASL_ZLIB_PATH) {
   throw new Error("NASL_ZLIB_PATH未设置");
 }
 
-const FRONTENDS = [
-  {
-    name: "pc",
-    type: "pc",
-    path: "/",
-    selected: true,
-    title: "PC端",
-  },
-  {
-    name: "m",
-    type: "h5",
-    path: "/m",
-    selected: false,
-    title: "H5端",
-  },
-];
+type FrontendOption = {
+  name: string;
+  type: string;
+  path: string;
+  selected: boolean;
+  title: string;
+};
+
+const frontendOptionsStr = process.env.FRONTENDS;
+
+if (!frontendOptionsStr) {
+  throw new Error("FRONTENDS未设置");
+}
+
+const frontendOptions: FrontendOption[] = JSON.parse(frontendOptionsStr);
 
 export const envs = {
   NASL_ZLIB_PATH,
-  FRONTENDS,
+  frontendOptions,
   debuggerServerPort: 3001,
 };
