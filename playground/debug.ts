@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { Logger } from "@lcap/nasl-unified-frontend-generator";
 import { writeCode } from "./utils";
 import { translate } from "./translate";
