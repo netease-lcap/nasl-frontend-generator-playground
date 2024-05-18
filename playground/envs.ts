@@ -1,6 +1,7 @@
-const annotatedNASLPath =
-  "/workspace/nasl.zlib" ??
-  "/Users/suicca/workspace/nasl-frontend-generator-playground/playground/fixtures/02195780-b1da-450b-a95e-d93147f02d7c/annotation.zlib";
+const NASL_ZLIB_PATH = process.env.NASL_ZLIB_PATH;
+if (!NASL_ZLIB_PATH) {
+  throw new Error("NASL_ZLIB_PATH未设置");
+}
 
 const FRONTENDS = [
   {
@@ -20,7 +21,7 @@ const FRONTENDS = [
 ];
 
 export const envs = {
-  annotatedNASLPath,
+  NASL_ZLIB_PATH,
   FRONTENDS,
   debuggerServerPort: 3001,
 };
