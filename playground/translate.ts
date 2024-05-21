@@ -18,27 +18,6 @@ const diffNodePaths: DiffNodePath[] = [
   ],
 ];
 
-type EntryDescriptor = {
-  sourceKey: string;
-  uploadKey: string;
-  fileType: "router" | "client";
-  frontendPath: string;
-};
-
-type EntrySummary = EntryDescriptor[];
-
-const entrySummaryJSONName = "/__RESULT__.json";
-
-function createSummaryFile(files: NameContent[]): NameContent {
-  function createEntrySummary(): EntrySummary {
-    return [];
-  }
-  return {
-    name: entrySummaryJSONName,
-    content: JSON.stringify(createEntrySummary()),
-  };
-}
-
 export async function translate(
   config: CommonAppConfig
 ): Promise<PathContent[]> {
