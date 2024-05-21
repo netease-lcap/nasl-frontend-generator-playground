@@ -1,8 +1,13 @@
 import { Frontend, genBundleFiles } from "@lcap/nasl";
-import { CommonAppConfig } from "@lcap/nasl-unified-frontend-generator";
+import {
+  CommonAppConfig,
+  Logger,
+  compileAsProject,
+} from "@lcap/nasl-unified-frontend-generator";
 import { lightJoin } from "light-join";
 import { envs } from "./envs";
 import { readNASLApp } from "./utils";
+import { makeContainer } from "./container";
 
 // TODO 移动一下位置
 type NameContent = { name: string; content: string };
@@ -21,6 +26,8 @@ const diffNodePaths: DiffNodePath[] = [
 export async function translate(
   config: CommonAppConfig
 ): Promise<PathContent[]> {
+  const logger = Logger("translate");
+  const container = makeContainer();
   const app = await readNASLApp();
   // 上层比较出来的所有变更路径的数组
   const res: PathContent[] = [];
@@ -57,8 +64,18 @@ export async function translate(
         const filesInObjectKey = transformFileNameToObjectKey(files);
         res.push(...filesInObjectKey);
       } else if (kind === "react") {
-        // TODO 实现 react
-        throw new Error("TODO: react");
+        const project = await compileAsProject(
+          app,
+          frontendNode,
+          config as any,
+          await container
+        );
+        const dict = project.getFileDict().files;
+        const files = Object.entries(dict).map(([k, v]) => {
+          return { path: k, content: v.code };
+        });
+        logger.info(files.map((x) => x.path));
+        res.push(...files);
       } else {
         throw new Error("not implemented");
       }
