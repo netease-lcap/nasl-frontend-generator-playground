@@ -8,12 +8,33 @@ import { promisify } from "node:util";
 
 import { unzip } from "node:zlib";
 import { envs } from "./envs";
+
 const do_unzip = promisify(unzip);
-export async function readNASLApp(): Promise<App> {
-  const buffer = await readFile(envs.NASL_ZLIB_PATH);
-  const json = await do_unzip(buffer).then((buf) => buf.toString());
-  const obj = JSON.parse(json);
-  return deserializeAppWhileKeepTypeAnnotation(obj);
+
+export type DiffNodePath = string[];
+
+type NaslRawCompilerObject = {
+  isFull?: boolean;
+  updatedModules?: DiffNodePath[];
+  annotatedNasl: object;
+};
+
+type NaslCompilerObject = {
+  isFull: boolean;
+  updatedModules: DiffNodePath[];
+  app: App;
+};
+
+async function readNASLZLibObject(path: string): Promise<NaslRawCompilerObject>{
+  const buffer = await readFile(path);
+  const jsonStr = await do_unzip(buffer).then((buf) => buf.toString());
+  return JSON.parse(jsonStr);
+}
+
+export async function loadNaslCompilerObject(): Promise<NaslCompilerObject> {
+  const {annotatedNasl, isFull, updatedModules} = await readNASLZLibObject(envs.NASL_ZLIB_PATH); // Fixed the function name
+  const app = deserializeAppWhileKeepTypeAnnotation(annotatedNasl);
+  return { app, isFull: !!isFull, updatedModules: updatedModules ?? [] };
 }
 
 export async function writeCode(codeList: { content: string; path: string }[]) {

@@ -6,29 +6,17 @@ import {
 } from "@lcap/nasl-unified-frontend-generator";
 import { lightJoin } from "light-join";
 import { envs } from "./envs";
-import { readNASLApp } from "./utils";
+import { loadNaslCompilerObject } from "./utils";
 import { makeContainer } from "./container";
 
-// TODO 移动一下位置
-type NameContent = { name: string; content: string };
-type PathContent = { path: string; content: string };
-type DiffNodePath = string[];
-
-const diffNodePaths: DiffNodePath[] = [
-  [
-    "app.frontendTypes[name=pc].frontends[name=pc]",
-    "app.frontendTypes[name=pc].frontends[name=pc].views[name=dashboard]",
-    "app.frontendTypes[name=pc].frontends[name=pc].views[name=dashboard].children[name=achievement]",
-    "app.frontendTypes[name=pc].frontends[name=pc].views[name=dashboard].children[name=achievement].children[name=assetscenter]",
-  ],
-];
+export type PathContent = { path: string; content: string };
 
 export async function translate(
   config: CommonAppConfig
 ): Promise<PathContent[]> {
   const logger = Logger("translate");
   const container = makeContainer();
-  const app = await readNASLApp();
+  const { app, isFull, updatedModules } = await loadNaslCompilerObject();
   // 上层比较出来的所有变更路径的数组
   const res: PathContent[] = [];
   const selectedFrontends = envs.frontendOptions.filter((f) => f.selected);
@@ -38,8 +26,9 @@ export async function translate(
     if (frontendNode) {
       const kind = frontendNode.frameworkKind;
       if (kind === "vue2") {
-        // TODO wudengke 传入diff
-        // (config as any).diffNodePaths = diffNodePaths;
+        (config as any).diffNodePaths = updatedModules;
+        (config as any).isFull = isFull;
+        type NameContent = { name: string; content: string };
         // 生成bundle文件，返回文件以及路径
         const files: NameContent[] = genBundleFiles(
           app,
