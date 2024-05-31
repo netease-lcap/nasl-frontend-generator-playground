@@ -24,7 +24,9 @@ export async function translate(
 ): Promise<PathContent[]> {
   const logger = Logger("translate");
   const container = makeContainer();
-  const { app, isFull, updatedModules } = await loadNaslCompilerObject();
+  const { app, isFull, updatedModules } = await loadNaslCompilerObject(
+    envs.naslZlibObjectPath
+  );
 
   await init(app, config);
 

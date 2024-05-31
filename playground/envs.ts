@@ -1,3 +1,6 @@
+import "dotenv/config";
+import { join } from "node:path";
+
 const NASL_ZLIB_PATH = process.env.NASL_ZLIB_PATH;
 if (!NASL_ZLIB_PATH) {
   throw new Error("NASL_ZLIB_PATH未设置");
@@ -20,7 +23,9 @@ if (!frontendOptionsStr) {
 const frontendOptions: FrontendOption[] = JSON.parse(frontendOptionsStr);
 
 export const envs = {
-  NASL_ZLIB_PATH,
+  naslZlibObjectPath: NASL_ZLIB_PATH,
   frontendOptions,
   debuggerServerPort: 3001,
+  playgroundRoot: __dirname,
+  outputFolder: join(__dirname, "..", process.env.OUTPUT_FOLDER ?? "./out"),
 };

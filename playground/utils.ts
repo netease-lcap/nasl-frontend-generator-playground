@@ -5,12 +5,13 @@ import {
 } from "@lcap/nasl-unified-frontend-generator";
 import { readFile } from "node:fs/promises";
 import { promisify } from "node:util";
-
 import { unzip } from "node:zlib";
 import { envs } from "./envs";
 import { MaterialData } from "@lcap/nasl/out/generator/release-body/internal";
 import { assert } from "node:console";
-import url from  'url';
+import url from "url";
+import { join } from "node:path";
+import fs from "fs-extra";
 
 const do_unzip = promisify(unzip);
 
@@ -28,19 +29,42 @@ type NaslCompilerObject = {
   app: App;
 };
 
-async function readNASLZLibObject(path: string): Promise<NaslRawCompilerObject>{
+async function readNASLZLibObject(
+  path: string
+): Promise<NaslRawCompilerObject> {
   const buffer = await readFile(path);
   const jsonStr = await do_unzip(buffer).then((buf) => buf.toString());
   return JSON.parse(jsonStr);
 }
 
-export async function loadNaslCompilerObject(): Promise<NaslCompilerObject> {
-  const {annotatedNasl, isFull, updatedModules} = await readNASLZLibObject(envs.NASL_ZLIB_PATH); // Fixed the function name
+export async function loadNaslCompilerObject(objectPath: string): Promise<NaslCompilerObject> {
+  const { annotatedNasl, isFull, updatedModules } = await readNASLZLibObject(
+    objectPath
+  );
   const app = deserializeAppWhileKeepTypeAnnotation(annotatedNasl);
   return { app, isFull: !!isFull, updatedModules: updatedModules ?? [] };
 }
 
-export async function writeCode(codeList: { content: string; path: string }[]) {
+type FileWriteCommand = { content: string; path: string };
+
+export async function writeCode(commands: FileWriteCommand[]) {
+  async function writeFile({ content, path }: FileWriteCommand) {
+    const realPath = join(envs.outputFolder, path);
+    return fs.outputFile(realPath, content);
+  }
+  const logger = Logger("代码写入");
+  logger.info("开始写入output目录");
+  await Promise.all(
+    commands.map((command) => {
+      return writeFile(command);
+    })
+  );
+  logger.info("全部写入完成");
+}
+
+export async function writeCodeToDebugServer(
+  codeList: { content: string; path: string }[]
+) {
   const debugServerHost = `http://localhost:${envs.debuggerServerPort}`;
   const logger = Logger("代码写入");
   logger.info("开始写入debug用文件系统");
@@ -58,8 +82,7 @@ export async function writeCode(codeList: { content: string; path: string }[]) {
   logger.info("全部写入完成");
 }
 
-
-const logger = Logger('utils');
+const logger = Logger("utils");
 
 /**
  * @deprecated 这些逻辑要放到NASL里面去
