@@ -8,6 +8,9 @@ import { promisify } from "node:util";
 
 import { unzip } from "node:zlib";
 import { envs } from "./envs";
+import { MaterialData } from "@lcap/nasl/out/generator/release-body/internal";
+import { assert } from "node:console";
+import url from  'url';
 
 const do_unzip = promisify(unzip);
 
@@ -54,3 +57,38 @@ export async function writeCode(codeList: { content: string; path: string }[]) {
   }
   logger.info("全部写入完成");
 }
+
+
+const logger = Logger('utils');
+
+/**
+ * @deprecated 这些逻辑要放到NASL里面去
+ */
+export const tempUtils = {
+  async getAndLoadPackageInfos(
+    app: App,
+    options: { staticUrl: string; fullVersion: string }
+  ) {
+    const l = logger.child({ prefix: "haha" });
+    const { staticUrl, fullVersion } = options;
+    const resolvedUrl = url.resolve("http:", staticUrl);
+    try {
+      const materialConfigCode = await fetch(
+        `${resolvedUrl}/packages/@lcap/mdd-ide@${fullVersion}/dist-mdd-ide/material.config.js`
+      ).then((res) => res.text());
+      assert(
+        typeof materialConfigCode === "string",
+        "materialCode should be string"
+      );
+      l.debug({ materialConfigCode });
+      const window = {} as { LCAP_MATERIALS: MaterialData };
+      eval(materialConfigCode);
+      // TODO wudengke 确认NASL中的这个函数使用的是globalThis而不是window
+      return app.loadPackageInfos(window.LCAP_MATERIALS);
+    } catch (error) {
+      l.error("加载materialConfig失败");
+      l.error(error);
+      throw new Error("eval material code 失败");
+    }
+  },
+};

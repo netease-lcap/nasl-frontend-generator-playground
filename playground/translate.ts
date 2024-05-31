@@ -1,15 +1,23 @@
-import { Frontend, genBundleFiles } from "@lcap/nasl";
+import { App, Frontend, genBundleFiles } from "@lcap/nasl";
 import {
   CommonAppConfig,
   Logger,
   compileAsProject,
 } from "@lcap/nasl-unified-frontend-generator";
 import { lightJoin } from "light-join";
-import { envs } from "./envs";
-import { loadNaslCompilerObject } from "./utils";
 import { makeContainer } from "./container";
+import { envs } from "./envs";
+import { loadNaslCompilerObject, tempUtils } from "./utils";
 
 export type PathContent = { path: string; content: string };
+
+async function init(app: App, config: CommonAppConfig) {
+  await tempUtils.getAndLoadPackageInfos(app, {
+    staticUrl: config.STATIC_URL,
+    // TODO wudengke 拿到完全的版本号
+    fullVersion: "3.8.0",
+  });
+}
 
 export async function translate(
   config: CommonAppConfig
@@ -17,6 +25,9 @@ export async function translate(
   const logger = Logger("translate");
   const container = makeContainer();
   const { app, isFull, updatedModules } = await loadNaslCompilerObject();
+
+  await init(app, config);
+
   // 上层比较出来的所有变更路径的数组
   const res: PathContent[] = [];
   const selectedFrontends = envs.frontendOptions.filter((f) => f.selected);
@@ -35,6 +46,9 @@ export async function translate(
           frontendNode,
           config as any
         );
+        const assetsInfo = app.genAllAssetsInfo('wwww', 'pc', 'vue2');
+        console.log(assetsInfo);
+        
         function transformFileNameToObjectKey(files: NameContent[]) {
           const filesInObjectKey = files.map(({ name, content }) => {
             // name 的例子 "//minio-api.codewave-test.163yun.com/lowcode-static/defaulttenant/02195780-b1da-450b-a95e-d93147f02d7c/dev/22042518.min.js"
