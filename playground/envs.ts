@@ -27,5 +27,5 @@ export const envs = {
   frontendOptions,
   debuggerServerPort: 3001,
   playgroundRoot: __dirname,
-  outputFolder: join(__dirname, "..", process.env.OUTPUT_FOLDER ?? "./out"),
+  outputFolder: process.env.OUTPUT_FOLDER || join(__dirname, "..", "./out"),
 };

@@ -38,6 +38,7 @@ export async function translate(
     const frontendNode: Frontend | undefined = app.findNodeByPath(path);
     if (frontendNode) {
       const kind = frontendNode.frameworkKind;
+      const frontendName = frontendNode.name;
       if (kind === "vue2") {
         (config as any).diffNodePaths = updatedModules;
         (config as any).isFull = isFull;
@@ -54,6 +55,7 @@ export async function translate(
             // name 的例子 "//minio-api.codewave-test.163yun.com/lowcode-static/defaulttenant/02195780-b1da-450b-a95e-d93147f02d7c/dev/22042518.min.js"
             const startingMarks = `${config.STATIC_URL}/${config.tenant}/${app.id}/${config.env}`;
             const normalizedName = lightJoin(
+              `/${frontendName}`,
               "/dist",
               name.replace(startingMarks, "")
             );
@@ -75,7 +77,8 @@ export async function translate(
         );
         const dict = project.getFileDict().files;
         const files = Object.entries(dict).map(([k, v]) => {
-          return { path: k, content: v.code };
+          const pathWithFrontend = lightJoin(`/${frontendName}`,k)
+          return { path: pathWithFrontend, content: v.code };
         });
         logger.info(files.map((x) => x.path));
         res.push(...files);

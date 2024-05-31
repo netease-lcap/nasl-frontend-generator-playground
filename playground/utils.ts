@@ -37,7 +37,9 @@ async function readNASLZLibObject(
   return JSON.parse(jsonStr);
 }
 
-export async function loadNaslCompilerObject(objectPath: string): Promise<NaslCompilerObject> {
+export async function loadNaslCompilerObject(
+  objectPath: string
+): Promise<NaslCompilerObject> {
   const { annotatedNasl, isFull, updatedModules } = await readNASLZLibObject(
     objectPath
   );
@@ -92,7 +94,6 @@ export const tempUtils = {
     app: App,
     options: { staticUrl: string; fullVersion: string }
   ) {
-    const l = logger.child({ prefix: "haha" });
     const { staticUrl, fullVersion } = options;
     const resolvedUrl = url.resolve("http:", staticUrl);
     try {
@@ -103,14 +104,14 @@ export const tempUtils = {
         typeof materialConfigCode === "string",
         "materialCode should be string"
       );
-      l.debug({ materialConfigCode });
+      logger.debug({ materialConfigCode });
       const window = {} as { LCAP_MATERIALS: MaterialData };
       eval(materialConfigCode);
       // TODO wudengke 确认NASL中的这个函数使用的是globalThis而不是window
       return app.loadPackageInfos(window.LCAP_MATERIALS);
     } catch (error) {
-      l.error("加载materialConfig失败");
-      l.error(error);
+      logger.error("加载materialConfig失败");
+      logger.error(error);
       throw new Error("eval material code 失败");
     }
   },
