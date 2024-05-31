@@ -46,8 +46,6 @@ export async function translate(
           frontendNode,
           config as any
         );
-        const assetsInfo = app.genAllAssetsInfo('wwww', 'pc', 'vue2');
-        console.log(assetsInfo);
         
         function transformFileNameToObjectKey(files: NameContent[]) {
           const filesInObjectKey = files.map(({ name, content }) => {
