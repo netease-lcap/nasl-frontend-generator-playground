@@ -55,8 +55,9 @@ async function main() {
     fs.readJsonSync(descriptionFilePath);
   console.log(desc);
   await build({});
-  pack();
-  console.log("打包完成");
+  const { outPath } = pack();
+  console.log(`打包完成`);
+  console.log(`产物路径: ${outPath}`);
 }
 
 main();
@@ -66,4 +67,5 @@ function pack() {
   const inPath = path.join(__dirname, "../dist");
   const outPath = path.join(__dirname, `../plugin.zip`);
   zip.zipSync(inPath, outPath);
+  return {outPath};
 }
