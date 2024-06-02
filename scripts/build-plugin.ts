@@ -4,6 +4,7 @@ import path from "path";
 import inc from "semver/functions/inc";
 import { v4 as uuidV4 } from "uuid";
 import { build } from "tsup";
+import { zip } from 'zip-a-folder';
 
 const descriptionFilePath = path.join(__dirname, "../public/description.json");
 
@@ -55,17 +56,16 @@ async function main() {
   console.log(desc);
   console.log("开始打包插件");
   await build({});
-  const { outPath } = pack();
+  const { outPath } = await pack();
   console.log(`打包完成`);
   console.log(`产物路径: ${outPath}`);
 }
 
 main();
 
-function pack() {
-  const zip = require("cross-zip");
+async function pack() {
   const inPath = path.join(__dirname, "../dist");
   const outPath = path.join(__dirname, `../plugin.zip`);
-  zip.zipSync(inPath, outPath);
+  await zip(`${inPath}`, outPath, { destPath: "/" });
   return { outPath };
 }
