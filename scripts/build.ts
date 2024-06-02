@@ -54,14 +54,9 @@ async function main() {
   const desc: TranslatorPluginDescription =
     fs.readJsonSync(descriptionFilePath);
   console.log(desc);
-  const res = await confirm({
-    message: `是否进行打包`,
-  });
-  if (res) {
-    await build({});
-    pack();
-    console.log("打包完成");
-  }
+  await build({});
+  pack();
+  console.log("打包完成");
 }
 
 main();
