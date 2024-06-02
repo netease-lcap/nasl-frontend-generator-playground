@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import path from "path";
 import inc from "semver/functions/inc";
 import { v4 as uuidV4 } from "uuid";
-import { build } from 'tsup'
+import { build } from "tsup";
 
 const descriptionFilePath = path.join(__dirname, "../public/description.json");
 
@@ -17,9 +17,8 @@ type TranslatorPluginDescription = {
 };
 
 async function main() {
-  const exists = fs.existsSync(descriptionFilePath);
-  console.log("开始打包插件");
-  if (!exists) {
+  const descriptionExists = fs.existsSync(descriptionFilePath);
+  if (!descriptionExists) {
     const descObj: TranslatorPluginDescription = {
       name: await input({
         message: "请输入插件名",
@@ -54,6 +53,7 @@ async function main() {
   const desc: TranslatorPluginDescription =
     fs.readJsonSync(descriptionFilePath);
   console.log(desc);
+  console.log("开始打包插件");
   await build({});
   const { outPath } = pack();
   console.log(`打包完成`);
@@ -67,5 +67,5 @@ function pack() {
   const inPath = path.join(__dirname, "../dist");
   const outPath = path.join(__dirname, `../plugin.zip`);
   zip.zipSync(inPath, outPath);
-  return {outPath};
+  return { outPath };
 }
