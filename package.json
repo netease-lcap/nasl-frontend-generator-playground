@@ -1,15 +1,15 @@
 {
-  "name": "nasl-frontend-generator-playground",
+  "name": "@lcap/nasl-frontend-generator-playground",
   "version": "2.0.0",
   "description": "",
   "main": "dist/app.js",
+  "private": "true",
   "scripts": {
     "clean": "rimraf out/*",
     "dev": "nodemon -e ts --exec 'npm run translate'",
-    "serve": "npm run clean && ts-node ./src/app.ts",
-    "serve:prod": "ts-node ./src/app.ts",
     "translate": "ts-node ./playground/debug.ts",
-    "postyalc": "pnpm i"
+    "postyalc": "pnpm i",
+    "build": "tsup"
   },
   "keywords": [],
   "author": "",
