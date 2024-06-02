@@ -61,7 +61,7 @@ importers:
         specifier: ^20.10.4
         version: 20.12.12
       nodemon:
-        specifier: ^3.1.2
+        specifier: ^3.0.2
         version: 3.1.2
       tsup:
         specifier: ^8.0.2
