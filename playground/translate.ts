@@ -34,7 +34,7 @@ export async function translate(
   const res: PathContent[] = [];
   const selectedFrontends = envs.frontendOptions.filter((f) => f.selected);
   for (const f of selectedFrontends) {
-    const path = `app.frontendTypes[name=${f.name}].frontends[name=${f.name}]`;
+    const path = `app.frontendTypes[name=${f.type}].frontends[name=${f.name}]`;
     const frontendNode: Frontend | undefined = app.findNodeByPath(path);
     if (frontendNode) {
       const kind = frontendNode.frameworkKind;
@@ -49,7 +49,7 @@ export async function translate(
           frontendNode,
           config as any
         );
-        
+
         function transformFileNameToObjectKey(files: NameContent[]) {
           const filesInObjectKey = files.map(({ name, content }) => {
             // name 的例子 "//minio-api.codewave-test.163yun.com/lowcode-static/defaulttenant/02195780-b1da-450b-a95e-d93147f02d7c/dev/22042518.min.js"
@@ -77,7 +77,7 @@ export async function translate(
         );
         const dict = project.getFileDict().files;
         const files = Object.entries(dict).map(([k, v]) => {
-          const pathWithFrontend = lightJoin(`/${frontendName}`,k)
+          const pathWithFrontend = lightJoin(`/${frontendName}`, k);
           return { path: pathWithFrontend, content: v.code };
         });
         logger.info(files.map((x) => x.path));

@@ -8,7 +8,7 @@ if (!NASL_ZLIB_PATH) {
 
 type FrontendOption = {
   name: string;
-  type: string;
+  type: "pc" | "h5";
   path: string;
   selected: boolean;
   title: string;
