@@ -50,10 +50,18 @@ export async function translate(
           config as any
         );
 
+        const frontendPath = frontendNode.path;
+
         function transformFileNameToObjectKey(files: NameContent[]) {
           const filesInObjectKey = files.map(({ name, content }) => {
-            // name 的例子 "//minio-api.codewave-test.163yun.com/lowcode-static/defaulttenant/02195780-b1da-450b-a95e-d93147f02d7c/dev/22042518.min.js"
-            const startingMarks = `${config.STATIC_URL}/${config.tenant}/${app.id}/${config.env}`;
+            // name 的例子 "//minio-api.codewave-test.163yun.com/lowcode-static/defaulttenant/02195780-b1da-450b-a95e-d93147f02d7c/dev/m/22042518.min.js"
+            const startingMarks = lightJoin(
+              config.STATIC_URL,
+              config.tenant,
+              app.id,
+              config.env,
+              frontendPath
+            );
             const normalizedName = lightJoin(
               `/${frontendName}`,
               "/dist",
