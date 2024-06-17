@@ -2,6 +2,7 @@ import "dotenv/config";
 import { Logger } from "@lcap/nasl-unified-frontend-generator";
 import { writeCode } from "./utils";
 import { translate } from "./translate";
+import { envs } from "./envs";
 
 const config = {
   nuimsDomain: "user.lcap.codewave-test.163yun.com",
@@ -53,7 +54,7 @@ const config = {
     },
   },
   kubeClientApplicationKey: "lcp-drill",
-  tenant: "defaulttenant",
+  tenant: envs.TENANT_NAME,
   env: "dev",
   tenantID: "00000000000000000000000000000000",
   multiEnvEnable: true,
@@ -102,7 +103,7 @@ const config = {
   },
   tenantExtraAbilityDetail: null,
   tenantVersion: {
-    tenantName: "defaulttenant",
+    tenantName: envs.TENANT_NAME,
     versionType: 4,
     versionId: "2417a61d7e9a4cb7b5ed2d83d29cc5fa",
     snapshotId: "c8885750ba4f48eea67f85fc965f71f8",

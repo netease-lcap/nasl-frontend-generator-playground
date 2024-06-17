@@ -28,4 +28,5 @@ export const envs = {
   debuggerServerPort: 3001,
   playgroundRoot: __dirname,
   outputFolder: process.env.OUTPUT_FOLDER || join(__dirname, "..", "./out"),
+  TENANT_NAME: process.env.TENANT_NAME,
 };
