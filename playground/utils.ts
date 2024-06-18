@@ -7,7 +7,7 @@ import { readFile } from "node:fs/promises";
 import { promisify } from "node:util";
 import { unzip } from "node:zlib";
 import { envs } from "./envs";
-import { MaterialData } from "@lcap/nasl/out/generator/release-body/internal";
+import { type MaterialData } from "@lcap/nasl/generator/release-body/internal";
 import { assert } from "node:console";
 import url from "url";
 import { join } from "node:path";

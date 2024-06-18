@@ -35,7 +35,7 @@ export async function translate(
   const selectedFrontends = envs.frontendOptions.filter((f) => f.selected);
   for (const f of selectedFrontends) {
     const path = `app.frontendTypes[name=${f.type}].frontends[name=${f.name}]`;
-    const frontendNode: Frontend | undefined = app.findNodeByPath(path);
+    const frontendNode = app.findNodeByPath(path) as Frontend | undefined;
     if (frontendNode) {
       const kind = frontendNode.frameworkKind;
       const frontendName = frontendNode.name;
