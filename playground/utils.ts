@@ -7,7 +7,7 @@ import { readFile } from "node:fs/promises";
 import { promisify } from "node:util";
 import { unzip } from "node:zlib";
 import { envs } from "./envs";
-import { type MaterialData } from "@lcap/nasl/generator/release-body/internal";
+
 import { assert } from "node:console";
 import url from "url";
 import { join } from "node:path";
@@ -105,6 +105,7 @@ export const tempUtils = {
         "materialCode should be string"
       );
       logger.debug({ materialConfigCode });
+      // @ts-expect-error
       const window = {} as { LCAP_MATERIALS: MaterialData };
       eval(materialConfigCode);
       // TODO wudengke 确认NASL中的这个函数使用的是globalThis而不是window
