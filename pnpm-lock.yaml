@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@lcap/nasl':
-        specifier: 3.9.0-beta.25
-        version: 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+        specifier: 3.9.0-beta.28
+        version: 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       '@lcap/nasl-unified-frontend-generator':
-        specifier: 3.9.0-beta.25
-        version: 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+        specifier: 3.9.0-beta.28
+        version: 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -475,44 +475,44 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lcap/nasl-breakpoint@3.9.0-beta.25':
-    resolution: {integrity: sha512-pPire2HUOVbkfgvjPGZ5W2C+VRPixd7VDK2t7yykDFAOlcoj8Bv546VfMfpa2cjjohzrL6IKKYZ48q71fXv+CA==}
+  '@lcap/nasl-breakpoint@3.9.0-beta.28':
+    resolution: {integrity: sha512-7aIUAVXa5kjjp0MBT8IJdnbngYqMNjw6A5kQS82LI9bhxN1eVeiVvSTY08j30vcZdeapkkIthYxZS4sxYjaAjw==}
 
-  '@lcap/nasl-concepts@3.9.0-beta.25':
-    resolution: {integrity: sha512-uu5psaZ8L5h9Qg+r6Zwfw6QVoSXdaxAqsB/U1Vnb0X5z37uzVF6Iu8hQRVo+IDUc86ja9BdVGF3axczwsaVILA==}
+  '@lcap/nasl-concepts@3.9.0-beta.28':
+    resolution: {integrity: sha512-ck4hFFYLaHUeL55SewYILrxDzWspy2AoEb2ceU5ahJMAesxCwyvpJIl9fuUTq94dHfFr4m/bJW8MfpH+/s6eyg==}
 
-  '@lcap/nasl-language-server-core@3.9.0-beta.25':
-    resolution: {integrity: sha512-8ah6OPWVYs1nYobUGRkTJ6i00+IZA7UhBeiwCCEzy8jfefB/wtXH6K09z5tTd3DoeGpNlieqvzQ03UxsfSzOvA==}
+  '@lcap/nasl-language-server-core@3.9.0-beta.28':
+    resolution: {integrity: sha512-sv9677EdiLQDmkLXbFuyrheVh2u3VtYmEdEsuXrwtVkiK5bJl9/YbkrENzgny9VVCSVs3sw/JJzVXAr/pjZ0Kg==}
 
-  '@lcap/nasl-log@3.9.0-beta.25':
-    resolution: {integrity: sha512-BEl1nfNSIx3qLSQnVQRpQp77+7/HPmDj5QxEPuIUVNNl15nh5BujmlmiNqJNB7VNK9gsXe7eNuSW5K1H2mcAxQ==}
+  '@lcap/nasl-log@3.9.0-beta.28':
+    resolution: {integrity: sha512-fx3aY/EhQxs8LEh/o3zGepSeWPDuhaDuBrqIZud8TqTAF++/t4K0s2CPOeg5p6qbJpML4AU+neAa4knJmO6d+w==}
 
-  '@lcap/nasl-sentry@3.9.0-beta.25':
-    resolution: {integrity: sha512-S90prF4DzDQkjJTgPawHVZTyYQWY7SjMKypUHKn+OBlaGv0/QXo4T27Tl+9Le4zLtzmfXG9ogATkKl3bVTD3DQ==}
+  '@lcap/nasl-sentry@3.9.0-beta.28':
+    resolution: {integrity: sha512-FFmY0YWUxMjGBvSaLfs+AE+4djd083yemvS0v7pgKLRY07X7YbXOUSio6juDGmtD7yF5dRXnMcaPQCNpR26smg==}
 
   '@lcap/nasl-test-toolkit@1.0.0':
     resolution: {integrity: sha512-+nCkCo/dPjAmJQfjy5O+8b9E5oujdQyLiYKkMr5YwsTW3gAEiN4ovLhb/wf0a8eYSAsdAr6E3THZj9dpu/e0yA==}
 
-  '@lcap/nasl-translator@3.9.0-beta.25':
-    resolution: {integrity: sha512-0L8mAU6p0Qou0iFltmjUSHE98+IDTk3oyuFIlPwTTZqLhOwxr6ozYapDyNA+XyG3Ta1pWcKKhj82UORZuhQcOg==}
+  '@lcap/nasl-translator@3.9.0-beta.28':
+    resolution: {integrity: sha512-YFqUhNQc2cBqaqq0eTYcMS/mEJd0SnW2IHurNJn4yTZO83g5O3KZtPHm2phv377SZMDYp9Oi6zfxOKIo8oB9pQ==}
 
   '@lcap/nasl-tsconfig@1.0.1':
     resolution: {integrity: sha512-Y4gaz9S3RR5RAFYgs8obHkWIh/C+cyud9lAQQJ8mfmDaKJWQbY2IOUgbbAFP/xORC4G3qDVTqgRv7YjOJdutgw==}
 
-  '@lcap/nasl-types@3.9.0-beta.25':
-    resolution: {integrity: sha512-xESuZjfYCOgTicDYer77k8XfG5Dzko0xk8bi/pFQEm4ntj+hhv+LNYz0AJGA5kkF3kW0joxoWsCOw/+evm2lfA==}
+  '@lcap/nasl-types@3.9.0-beta.28':
+    resolution: {integrity: sha512-WvUfetm1BmeLYEMSwonrOtN50t8y3iQ74u5wvjFeHouA0IrY2Oue/8nN2n3SvpbZ6XpM/6b4vVPiIIIfnGiXdQ==}
 
-  '@lcap/nasl-typescript-worker@3.9.0-beta.25':
-    resolution: {integrity: sha512-Sxl2R/0ERqnCWgFsDgL88VC8LnSwLnfSUxmN/cAipsWGz9c/m35+QFfMdP30mRePyRsc9k75V2vefF1ST2jAIA==}
+  '@lcap/nasl-typescript-worker@3.9.0-beta.28':
+    resolution: {integrity: sha512-rGz4L9zKYmauQGzbTt2sSX0wHdrqlJ7+r3zdQXD7eF+JdnGHNrOvbzjziiRrE9dBUENQpQHK8w4XrwF0yZjAkw==}
 
-  '@lcap/nasl-unified-frontend-generator@3.9.0-beta.25':
-    resolution: {integrity: sha512-nZOuEdqGIxhK8d3afhMBAao+3dibfe1tZp2ePDVUOkiywBK4lBopRyygYoqxJcJu778++04BATuMoECcIWlJLQ==}
+  '@lcap/nasl-unified-frontend-generator@3.9.0-beta.28':
+    resolution: {integrity: sha512-2vjJ7Y/2PhjDTGOtsoubKNNa9UasQgkzk/6S23TdwIaOex1jus60zB56/O16SzrPZNjMrtTUKRM3Sc/0sjZjVg==}
 
-  '@lcap/nasl-utils@3.9.0-beta.25':
-    resolution: {integrity: sha512-DIdguJI7QQYztkVmqDKZg/aRR9wH+8krYeAijDoc5av+4bR6m9okILZLBMSLZVgJZibshc4sCD/UDS7imWEghg==}
+  '@lcap/nasl-utils@3.9.0-beta.28':
+    resolution: {integrity: sha512-Msa0ffM+i30fUF7MxIVgdpyCF8Pwr/LM9vzrK2/+L28S/3FB7MJoABKLNRfa1qB2qnkjwQcNV5NoHYEhnU2TNA==}
 
-  '@lcap/nasl@3.9.0-beta.25':
-    resolution: {integrity: sha512-lUO0snNCh89aCLLo71E08nKCqd2M4J6JsOu47w5dbGlPKOx3cGj+TyoJeZ6gtmoaPpLowIrfpzKBeiJ7BiEB+w==}
+  '@lcap/nasl@3.9.0-beta.28':
+    resolution: {integrity: sha512-D34A2d6WXONjkOlOxBQM1GWiDx3L4jhkVbCn9OUn1zfl9o6Cs97ak52CyWPPf4EqTMePRQJO7w4mQMgjBsLhiQ==}
     engines: {node: '>=16.20'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -2363,10 +2363,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@lcap/nasl-breakpoint@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-breakpoint@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
-      '@lcap/nasl-concepts': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-concepts': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       lodash: 4.17.21
       socket.io-client: 2.4.0
     transitivePeerDependencies:
@@ -2376,12 +2376,12 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@lcap/nasl-concepts@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-concepts@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
-      '@lcap/nasl-sentry': 3.9.0-beta.25
-      '@lcap/nasl-translator': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-sentry': 3.9.0-beta.28
+      '@lcap/nasl-translator': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       compare-versions: 4.1.3
       json5: 2.2.3
       lodash: 4.17.21
@@ -2390,19 +2390,19 @@ snapshots:
       - debug
       - typescript
 
-  '@lcap/nasl-language-server-core@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-language-server-core@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
-      '@lcap/nasl-concepts': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-concepts': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       lodash: 4.17.21
     transitivePeerDependencies:
       - debug
       - typescript
 
-  '@lcap/nasl-log@3.9.0-beta.25': {}
+  '@lcap/nasl-log@3.9.0-beta.28': {}
 
-  '@lcap/nasl-sentry@3.9.0-beta.25':
+  '@lcap/nasl-sentry@3.9.0-beta.28':
     dependencies:
       axios: 1.6.2
     transitivePeerDependencies:
@@ -2410,35 +2410,35 @@ snapshots:
 
   '@lcap/nasl-test-toolkit@1.0.0': {}
 
-  '@lcap/nasl-translator@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-translator@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
       '@lcap/nasl-test-toolkit': 1.0.0
       '@lcap/nasl-tsconfig': 1.0.1
-      '@lcap/nasl-types': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
     transitivePeerDependencies:
       - typescript
 
   '@lcap/nasl-tsconfig@1.0.1': {}
 
-  '@lcap/nasl-types@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-types@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
       ts-essentials: 9.4.2(typescript@5.4.0-dev.20231207)
     transitivePeerDependencies:
       - typescript
 
-  '@lcap/nasl-typescript-worker@3.9.0-beta.25':
+  '@lcap/nasl-typescript-worker@3.9.0-beta.28':
     dependencies:
       typescript: 4.7.4
       uuid: 8.3.2
 
-  '@lcap/nasl-unified-frontend-generator@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-unified-frontend-generator@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
       '@abraham/reflection': 0.12.0
-      '@lcap/nasl-breakpoint': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-concepts': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-translator': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-breakpoint': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-concepts': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-translator': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       axios: 1.6.2
       html-escaper: 3.0.3
       inversify: 6.0.2
@@ -2457,14 +2457,14 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@lcap/nasl-utils@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-utils@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
-      '@lcap/nasl-types': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       uuid: 8.3.2
     transitivePeerDependencies:
       - typescript
 
-  '@lcap/nasl@3.9.0-beta.25(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl@3.9.0-beta.28(typescript@5.4.0-dev.20231207)':
     dependencies:
       '@abraham/reflection': 0.12.0
       '@babel/core': 7.22.15
@@ -2473,16 +2473,16 @@ snapshots:
       '@babel/preset-typescript': 7.22.15(@babel/core@7.22.15)
       '@babel/traverse': 7.24.1
       '@babel/types': 7.24.0
-      '@lcap/nasl-breakpoint': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-concepts': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-language-server-core': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-log': 3.9.0-beta.25
-      '@lcap/nasl-sentry': 3.9.0-beta.25
-      '@lcap/nasl-translator': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-typescript-worker': 3.9.0-beta.25
-      '@lcap/nasl-unified-frontend-generator': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.9.0-beta.25(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-breakpoint': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-concepts': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-language-server-core': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-log': 3.9.0-beta.28
+      '@lcap/nasl-sentry': 3.9.0-beta.28
+      '@lcap/nasl-translator': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-typescript-worker': 3.9.0-beta.28
+      '@lcap/nasl-unified-frontend-generator': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.9.0-beta.28(typescript@5.4.0-dev.20231207)
       axios: 1.6.2
       compare-versions: 4.1.3
       date-fns: 2.6.0
