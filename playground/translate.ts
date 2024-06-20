@@ -15,7 +15,7 @@ async function init(app: App, config: CommonAppConfig) {
   await tempUtils.getAndLoadPackageInfos(app, {
     staticUrl: config.STATIC_URL,
     // TODO wudengke 拿到完全的版本号
-    fullVersion: "3.8.0",
+    fullVersion: "3.9.0",
   });
 }
 
