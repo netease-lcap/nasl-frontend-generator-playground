@@ -10,15 +10,16 @@ pnpm i
 
 ## 试玩
 
+
+### 简介
+
 Playground项目翻译入口。位于`playground/debug.ts`下，它会根据`.env`中定义的`NASL_ZLIB_PATH`环境变量寻找NASL数据文件，翻译为应用源码后写入`out`目录。
 
-### 启动文件服务器
+### 环境变量文件创建
 
-```
-pnpm serve
-```
+如果你在仓库根目录下没有`.env`文件，需要将`.env.template`复制到`.env`。
 
-请注意同时只能启动一个文件服务器。
+你通常还需要修改`NASL_ZLIB_PATH="/Users/suicca/workspace/nasl-frontend-generator-playground/playground/fixtures/b0fb29f7-9cf3-4f47-b49d-4935183aaa66/annotation-1718699989055"`的值，以指向你本地的`fixtures`文件下的同名数据。
 
 ### 启动翻译入口
 
