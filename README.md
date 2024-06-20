@@ -10,7 +10,6 @@ pnpm i
 
 ## 试玩
 
-
 ### 简介
 
 Playground项目翻译入口。位于`playground/debug.ts`下，它会根据`.env`中定义的`NASL_ZLIB_PATH`环境变量寻找NASL数据文件，翻译为应用源码后写入`out`目录。
@@ -27,7 +26,7 @@ Playground项目翻译入口。位于`playground/debug.ts`下，它会根据`.en
 pnpm dev
 ```
 
-这个命令会执行`playground/index.ts`文件。并且在这个文件发生改动的时候重新进行翻译过程。
+这个命令会执行`playground/debug.ts`文件。并且在这个文件发生改动的时候重新进行翻译过程。
 
 如果一切顺利，你就会在终端看到如下日志：
 
@@ -182,3 +181,11 @@ pnpm dev
 
 提示：
 翻译的过程中会从内部的测试环境下载依赖库（React组件库等），如果在执行翻译的时候无法访问网易内部测试环境，翻译能够正常完成，但是得到的源码中会缺少这些依赖库。
+
+### 调试翻译过程
+
+项目根目录下的`.vscode/launch.json`文件中，包含一份名为`启动翻译过程调试`的调试配置。
+
+你可以在VSCode的调试菜单中启动调试。
+
+推荐你一开始可以先尝试以`playground/translate.ts`中的`compileAsProject`函数调用为入口进行调试。

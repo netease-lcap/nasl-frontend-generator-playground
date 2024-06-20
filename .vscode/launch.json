@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "启动翻译过程debug",
+      "name": "启动翻译过程调试",
       "type": "node",
       "request": "launch",
       "runtimeArgs": ["-r", "ts-node/register"],
