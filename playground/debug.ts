@@ -4,6 +4,9 @@ import { writeCode } from "./utils";
 import { translate } from "./translate";
 import { envs } from "./envs";
 
+// HACK: 允许证书有问题的HTTPs请求
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const config = {
   nuimsDomain: "user.lcap.codewave-test.163yun.com",
   kubeInsightAppCluster: "drill",
