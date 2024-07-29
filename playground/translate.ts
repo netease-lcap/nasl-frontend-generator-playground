@@ -23,7 +23,7 @@ export async function translate(
   config: CommonAppConfig
 ): Promise<PathContent[]> {
   const logger = Logger("translate");
-  const container = makeContainer();
+  const container = await makeContainer();
   const { app, isFull, updatedModules } = await loadNaslCompilerObject(
     envs.naslZlibObjectPath
   );
@@ -81,7 +81,7 @@ export async function translate(
           app,
           frontendNode,
           config as any,
-          await container
+          container
         );
         const dict = project.getFileDict().files;
         const files = Object.entries(dict).map(([k, v]) => {
