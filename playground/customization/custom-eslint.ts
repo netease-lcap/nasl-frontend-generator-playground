@@ -3,13 +3,10 @@ import {
   ServiceMetaKind,
   GeneratorInfrastructureDomain,
   Logger,
+  JavaScriptDomain,
 } from "@lcap/nasl-unified-frontend-generator";
 import dedent from "dedent";
 import { injectable, inject, Container } from "inversify";
-import {
-  NpmPackageJSONPluginSymbol,
-  NpmPackageJSONPlugin,
-} from "./npm-package-plugin";
 
 export function setupEslint(container: Container) {
   @injectable()
@@ -17,8 +14,8 @@ export function setupEslint(container: Container) {
     constructor(
       @inject(ServiceMetaKind.FileSystemProvider)
       protected fileSystemProvider: GeneratorInfrastructureDomain.FileSystemProvider,
-      @inject(NpmPackageJSONPluginSymbol)
-      private npmPackageJSONPlugin: NpmPackageJSONPlugin
+      @inject(ServiceMetaKind.NpmPackageJSONManager)
+      private npmPackageJSONManagerPlugin: JavaScriptDomain.FrontendApplicationDomain.NpmPackageJSONManager
     ) {
       super(fileSystemProvider);
     }
@@ -46,7 +43,7 @@ export function setupEslint(container: Container) {
         `
       );
       logger.info("在package.json中添加依赖");
-      this.npmPackageJSONPlugin.patch({
+      this.npmPackageJSONManagerPlugin.patch({
         devDependencies: {
           eslint: "8.57.0",
           typescript: "5.4.3",
@@ -54,7 +51,7 @@ export function setupEslint(container: Container) {
         },
       });
       logger.info("在package.json中添加eslint启动脚本");
-      this.npmPackageJSONPlugin.patch({
+      this.npmPackageJSONManagerPlugin.patch({
         scripts: {
           lint: "pnpm eslint --fix",
         },
@@ -63,10 +60,6 @@ export function setupEslint(container: Container) {
       logger.info(res, "package.json内容");
     }
   }
-
-  container
-    .bind<NpmPackageJSONPlugin>(NpmPackageJSONPluginSymbol)
-    .to(NpmPackageJSONPlugin);
 
   container
     .bind<GeneratorInfrastructureDomain.CodeGenerationLifecycleHooks>(
