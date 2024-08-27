@@ -30,9 +30,9 @@ if (!frontendOptionsStr) {
 const frontendOptions: FrontendOption[] = JSON.parse(frontendOptionsStr);
 
 
-const generatorConfigStr = process.env.GENERATOR_CONFIG;
+const generatorConfigStr = process.env.generatorConfig;
 if(!generatorConfigStr){
-  throw new Error("GENERATOR_CONFIG未设置");
+  throw new Error("generatorConfig未设置");
 }
 const generatorConfig: GeneratorConfig = JSON.parse(generatorConfigStr);
 
