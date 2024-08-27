@@ -8,10 +8,10 @@ import { promisify } from "node:util";
 import { unzip } from "node:zlib";
 import { envs } from "./envs";
 
-import { assert } from "node:console";
 import url from "url";
 import { join } from "node:path";
 import fs from "fs-extra";
+import { lightJoin } from "light-join";
 
 const do_unzip = promisify(unzip);
 
@@ -97,13 +97,17 @@ export const tempUtils = {
     const { staticUrl, fullVersion } = options;
     const resolvedUrl = url.resolve("http:", staticUrl);
     try {
-      const materialConfigCode = await fetch(
-        `${resolvedUrl}/packages/@lcap/mdd-ide@${fullVersion}/dist-mdd-ide/material.config.js`
-      ).then((res) => res.text());
-      assert(
-        typeof materialConfigCode === "string",
-        "materialCode should be string"
+      const materialConfigUrl = lightJoin(
+        resolvedUrl,
+        `/packages/@lcap/mdd-ide@${fullVersion}/dist-mdd-ide/material.config.js`
       );
+      logger.info({ materialConfigUrl });
+      const materialConfigCode = await fetch(materialConfigUrl).then((res) => {
+        if (!res.ok) {
+          throw new Error(`获取materialConfig失败: ${res.statusText}`);
+        }
+        return res.text();
+      });
       logger.debug({ materialConfigCode });
       // @ts-expect-error
       const window = {} as { LCAP_MATERIALS: MaterialData };
