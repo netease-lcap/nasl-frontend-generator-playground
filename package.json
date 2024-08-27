@@ -1,6 +1,6 @@
 {
   "name": "@lcap/nasl-frontend-generator-playground",
-  "version": "3.9.3-rc.3",
+  "version": "3.9.3-rc.5",
   "description": "",
   "private": "true",
   "scripts": {
@@ -27,8 +27,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lcap/nasl": "3.9.3-rc.3",
-    "@lcap/nasl-unified-frontend-generator": "3.9.3-rc.3",
+    "@lcap/nasl": "3.9.3-rc.5",
+    "@lcap/nasl-unified-frontend-generator": "3.9.3-rc.5",
     "cors": "^2.8.5",
     "dedent": "^1.5.1",
     "dotenv": "^16.4.5",
