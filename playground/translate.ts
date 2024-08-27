@@ -2,7 +2,6 @@ import {
   App,
   Frontend,
   genBundleFiles,
-  type CommonAppConfig,
   Logger,
   compileAsProject,
 } from "@lcap/nasl";
@@ -10,19 +9,19 @@ import { lightJoin } from "light-join";
 import { makeContainer } from "./container";
 import { envs } from "./envs";
 import { loadNaslCompilerObject, tempUtils } from "./utils";
+import { GeneratorConfig } from "./types";
 
 export type PathContent = { path: string; content: string };
 
-async function init(app: App, config: CommonAppConfig) {
+async function init(app: App, config: GeneratorConfig) {
   await tempUtils.getAndLoadPackageInfos(app, {
     staticUrl: config.STATIC_URL,
-    // TODO wudengke 拿到完全的版本号
-    fullVersion: "3.9.3",
+    fullVersion: config.fullVersion,
   });
 }
 
 export async function translate(
-  config: CommonAppConfig
+  config: GeneratorConfig
 ): Promise<PathContent[]> {
   const logger = Logger("translate");
   const container = await makeContainer();
