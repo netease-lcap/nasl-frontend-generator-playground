@@ -57,7 +57,7 @@ export async function translate(
           const filesInObjectKey = files.map(({ name, content }) => {
             // name 的例子 "//minio-api.codewave-test.163yun.com/lowcode-static/defaulttenant/02195780-b1da-450b-a95e-d93147f02d7c/dev/m/22042518.min.js"
             const startingMarks = lightJoin(
-              config.STATIC_URL,
+              config.USER_STATIC_URL,
               config.tenant,
               app.id,
               config.env,
