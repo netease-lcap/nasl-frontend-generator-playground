@@ -1,23 +1,26 @@
 import {
-  App,
+  compileAsProject,
   Frontend,
   genBundleFiles,
-  Logger,
-  compileAsProject,
+  Logger
 } from "@lcap/nasl";
 import { lightJoin } from "light-join";
 import { makeContainer } from "./container";
 import { envs } from "./envs";
-import { loadNaslCompilerObject, tempUtils } from "./utils";
 import { GeneratorConfig } from "./types";
+import { loadNaslCompilerObject, tempUtils } from "./utils";
 
 export type PathContent = { path: string; content: string };
 
-async function init(app: App, config: GeneratorConfig) {
+async function initApp(config: GeneratorConfig) {
+  const { app, isFull, updatedModules } = await loadNaslCompilerObject(
+    envs.naslZlibObjectPath
+  );
   await tempUtils.getAndLoadPackageInfos(app, {
     staticUrl: config.STATIC_URL,
     fullVersion: config.fullVersion,
   });
+  return { app, isFull, updatedModules };
 }
 
 export async function translate(
@@ -25,11 +28,7 @@ export async function translate(
 ): Promise<PathContent[]> {
   const logger = Logger("translate");
   const container = await makeContainer();
-  const { app, isFull, updatedModules } = await loadNaslCompilerObject(
-    envs.naslZlibObjectPath
-  );
-
-  await init(app, config);
+  const { app, isFull, updatedModules } = await initApp(config);
 
   // 上层比较出来的所有变更路径的数组
   const res: PathContent[] = [];
