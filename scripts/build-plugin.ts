@@ -19,8 +19,15 @@ type TranslatorPluginDescription = {
 
 async function build() {
   const config = await loadConfig();
-  const rsbuild = await createRsbuild({rsbuildConfig: config.content});
+  const rsbuild = await createRsbuild({ rsbuildConfig: config.content });
   await rsbuild.build();
+}
+
+async function pack() {
+  const inPath = path.join(__dirname, "../dist");
+  const packedPath = path.join(__dirname, `../plugin.zip`);
+  await zip(`${inPath}`, packedPath, { destPath: "/" });
+  return { packedPath };
 }
 
 async function main() {
@@ -62,16 +69,9 @@ async function main() {
   console.log(desc);
   console.log("开始打包插件");
   await build();
-  const { outPath } = await pack();
+  const { packedPath } = await pack();
   console.log(`打包完成`);
-  console.log(`产物路径: ${outPath}`);
+  console.log(`压缩包路径: ${packedPath}`);
 }
 
 main();
-
-async function pack() {
-  const inPath = path.join(__dirname, "../dist");
-  const outPath = path.join(__dirname, `../plugin.zip`);
-  await zip(`${inPath}`, outPath, { destPath: "/" });
-  return { outPath };
-}

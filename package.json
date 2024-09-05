@@ -8,6 +8,9 @@
     "dev": "nodemon -e ts --exec 'npm run translate'",
     "translate": "ts-node ./playground/debug.ts",
     "postyalc": "pnpm i",
+    "build": "pnpm build:plugin && pnpm test:plugin",
+    "test": "pnpm test:plugin",
+    "test:plugin": "ts-node scripts/test-plugin.ts",
     "build:plugin": "ts-node scripts/build-plugin.ts"
   },
   "files": [
