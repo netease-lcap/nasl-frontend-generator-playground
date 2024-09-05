@@ -3,8 +3,8 @@ import fs from "fs-extra";
 import path from "path";
 import inc from "semver/functions/inc";
 import { v4 as uuidV4 } from "uuid";
-import { build } from "tsup";
-import { zip } from 'zip-a-folder';
+import { createRsbuild, loadConfig } from "@rsbuild/core";
+import { zip } from "zip-a-folder";
 
 const descriptionFilePath = path.join(__dirname, "../public/description.json");
 
@@ -16,6 +16,12 @@ type TranslatorPluginDescription = {
   description: string;
   endType: string;
 };
+
+async function build() {
+  const config = await loadConfig();
+  const rsbuild = await createRsbuild({rsbuildConfig: config.content});
+  await rsbuild.build();
+}
 
 async function main() {
   const descriptionExists = fs.existsSync(descriptionFilePath);
@@ -55,7 +61,7 @@ async function main() {
     fs.readJsonSync(descriptionFilePath);
   console.log(desc);
   console.log("开始打包插件");
-  await build({});
+  await build();
   const { outPath } = await pack();
   console.log(`打包完成`);
   console.log(`产物路径: ${outPath}`);

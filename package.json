@@ -8,7 +8,6 @@
     "dev": "nodemon -e ts --exec 'npm run translate'",
     "translate": "ts-node ./playground/debug.ts",
     "postyalc": "pnpm i",
-    "build": "tsc",
     "build:plugin": "ts-node scripts/build-plugin.ts"
   },
   "files": [
@@ -45,6 +44,7 @@
   "devDependencies": {
     "@abraham/reflection": "^0.12.0",
     "@inquirer/prompts": "^5.0.5",
+    "@rsbuild/core": "1.0.1-rc.4",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.10.4",
@@ -52,7 +52,6 @@
     "@types/uuid": "^9.0.8",
     "nodemon": "^3.0.2",
     "semver": "^7.6.2",
-    "tsup": "^8.0.2",
     "uuid": "^9.0.1",
     "zip-a-folder": "^3.1.6"
   }
