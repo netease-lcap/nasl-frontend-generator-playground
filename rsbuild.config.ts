@@ -4,7 +4,7 @@ export default defineConfig({
   output: {
     target: "node",
     minify: false,
-    externals: ['pino'],
+    externals: ['pino', '@abraham/reflection'],
   },
   source: {
     entry: {
