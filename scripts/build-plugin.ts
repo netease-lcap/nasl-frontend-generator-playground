@@ -6,6 +6,9 @@ import { v4 as uuidV4 } from "uuid";
 import { createRsbuild, loadConfig } from "@rsbuild/core";
 import { zip } from "zip-a-folder";
 
+import packageJSON from "../package.json";
+import { SemVer } from "semver";
+
 const descriptionFilePath = path.join(__dirname, "../public/description.json");
 
 type TranslatorPluginDescription = {
@@ -30,6 +33,16 @@ async function pack() {
   return { packedPath };
 }
 
+function getIdeVersion() {
+  // 读取package.json中的@lcap/nasl包version, 计算ideVersion
+  const naslVersion = packageJSON.dependencies["@lcap/nasl"];
+  const semVer = new SemVer(naslVersion);
+  // 将ideVersion格式化为x.y.z
+  semVer.prerelease = [];
+  const ideVersion = semVer.format();
+  return ideVersion;
+}
+
 async function main() {
   const descriptionExists = fs.existsSync(descriptionFilePath);
   if (!descriptionExists) {
@@ -42,7 +55,7 @@ async function main() {
         message: "请输入插件版本号",
         default: "1.0.0",
       }),
-      ideVersion: "3.8",
+      ideVersion: getIdeVersion(),
       description: "测试",
       endType: "frontend",
       symbol: uuidV4(),
