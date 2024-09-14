@@ -189,3 +189,38 @@ pnpm dev
 你可以在VSCode的调试菜单中启动调试。
 
 推荐你一开始可以先尝试以`playground/translate.ts`中的`compileAsProject`函数调用为入口进行调试。
+
+### 翻译器插件的入口
+
+插件的入口在`playground/container.ts`中的`makeContainer`函数。
+
+这个函数的作用是返回注入了需要在翻译流程中用到的翻译器插件的容器。在真正翻译的时候，会调用`makeContainer`函数。
+
+因此，只需要在`makeContainer`函数中注入你的插件或对已经注入的插件作修改，就能够改变翻译的行为。
+
+如下，它启用了三个插件：
+
+1. setupPerformanceOptions
+2. setupNpmPackages
+3. setupCompilerToWebpack
+
+```ts
+import { makeDefaultContainer } from "@lcap/nasl-unified-frontend-generator";
+import { setupPerformanceOptions } from "./customization/customize-performance";
+import { setupNpmPackages } from "./customization/custom-npm-package";
+import { setupCompilerToWebpack } from "./customization/custom-compiler";
+
+export async function makeContainer() {
+  const container = makeDefaultContainer();
+  return Promise.resolve(container)
+    .then(setupPerformanceOptions)
+    .then(setupNpmPackages)
+    .then(setupCompilerToWebpack);
+}
+```
+
+### 翻译器插件的打包
+
+使用`pnpm build:plugin`命令可以从当前翻译器插件入口，打包翻译器插件，打包成功后，会出现一个`plugin.zip`文件。
+
+将这个文件上传到插件管理中，就可以使用这个插件了。
