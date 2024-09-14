@@ -30,8 +30,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lcap/nasl": "3.9.3-rc.5",
-    "@lcap/nasl-unified-frontend-generator": "3.9.3-rc.5",
+    "@lcap/nasl": "3.11.0-beta.1",
+    "@lcap/nasl-unified-frontend-generator": "3.11.0-beta.1",
     "cors": "^2.8.5",
     "dedent": "^1.5.1",
     "dotenv": "^16.4.5",
