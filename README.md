@@ -224,3 +224,22 @@ export async function makeContainer() {
 使用`pnpm build:plugin`命令可以从当前翻译器插件入口，打包翻译器插件，打包成功后，会出现一个`plugin.zip`文件。
 
 将这个文件上传到插件管理中，就可以使用这个插件了。
+
+## 常见问题
+
+### 报错: NASL_ZLIB_PATH未设置
+
+> 症状：报错 NASL_ZLIB_PATH 未设置。
+
+解决方案：
+翻译器会从`.env`文件中读取环境变量。
+
+1. 请检查是否存在此文件；
+2. 此文件中的`NASL_ZLIB_PATH`是否有值，以及是否指向存在的文件。
+
+### 报错: Blob is not defined
+
+> 症状：报错`ReferenceError: Blob is not defined`。
+
+解决方案:
+1. 请使用node.js>=18再试。
