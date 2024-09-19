@@ -37,9 +37,9 @@ function getIdeVersion() {
   // 读取package.json中的@lcap/nasl包version, 计算ideVersion
   const naslVersion = packageJSON.dependencies["@lcap/nasl"];
   const semVer = new SemVer(naslVersion);
-  // 将ideVersion格式化为x.y.z
+  // 将ideVersion格式化为x.y
   semVer.prerelease = [];
-  const ideVersion = semVer.format();
+  const ideVersion = `${semVer.major}.${semVer.minor}`;
   return ideVersion;
 }
 
