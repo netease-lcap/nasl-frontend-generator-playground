@@ -12,5 +12,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "lib": ["es2021"]
+  "lib": ["es2021"],
+  "exclude": ["out"]
 }
