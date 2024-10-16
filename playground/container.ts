@@ -10,5 +10,5 @@ export async function makeContainer() {
     .then(setupPerformanceOptions) // 修改性能配置
     .then(setupNpmPackages) // 修改npm包
     .then(setupCompilerToWebpack) // 修改前端编译器为Webpack
-    .then(setupMicrofrontend) // 修改微前端配置
+    .then(setupMicrofrontend); // 修改微前端配置
 }
