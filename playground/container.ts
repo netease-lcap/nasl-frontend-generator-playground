@@ -1,5 +1,5 @@
 import { makeDefaultContainer } from "@lcap/nasl-unified-frontend-generator";
-import { setupPerformanceOptions } from "./customization/customize-performance";
+import { setupPerformanceOptions } from "./customization/custom-performance";
 import { setupNpmPackages } from "./customization/custom-npm-package";
 import { setupCompilerToWebpack } from "./customization/custom-compiler";
 import { setupMicrofrontend } from "./customization/custom-microfrontend";
