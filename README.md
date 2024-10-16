@@ -14,6 +14,50 @@ pnpm i
 
 Playground项目翻译入口。位于`playground/debug.ts`下，它会根据`.env`中定义的`NASL_ZLIB_PATH`环境变量寻找NASL数据文件，翻译为应用源码后写入`out`目录。
 
+目录结构含义如下：
+
+```
+.
+├── README.md                                    # 脚手架说明文档
+├── dist                                         # 打包后的插件。未打包前可能为空
+│   ├── README.md
+│   ├── description.json
+│   └── plugin.js                                # 打包后的插件 js
+├── out                                          # 调试结果的输出目录
+├── nodemon.json 
+├── package.json
+├── playground                                   # 脚手架代码目录
+│   ├── container.ts                             # 构建插件系统依赖注入容器，是用户插件的总入口
+│   ├── customization                            # 用户自定义插件的目录
+│   │   ├── custom-compiler.ts                   # 插件使用示例：定制前端打包工具(脚手架)
+│   │   ├── custom-eslint.ts                     # 插件使用示例：增加eslint
+│   │   ├── custom-microfrontend.ts              # 插件使用示例：修改微前端框架
+│   │   ├── custom-npm-package.ts                # 插件使用示例：修改package.json中的npm包
+│   │   ├── custom-project-layout.ts             # 插件使用示例：修改项目结构
+│   │   └── customize-performance.ts             # 插件使用示例：优化前端性能
+│   ├── debug.ts                                 # 调试入口文件
+│   ├── envs.ts                                  # 环境变量
+│   ├── fixtures                                 # 预置的应用NASL
+│   │   ├── b0fb29f7-9cf3-4f47-b49d-4935183aaa66 # 应用1 NASL
+│   │   │   └── annotation-1718699989055
+│   │   └── e6196626-e639-4d52-b6f1-f1ed00eef706 # 应用2 NASL
+│   │       └── annotation-1716975881205
+│   ├── index.ts
+│   ├── translate.ts
+│   ├── types.ts
+│   └── utils.ts
+├── plugin.zip                                   # 打包后的插件压缩包
+├── pnpm-lock.yaml
+├── public                                       # 用户插件包的静态文件目录
+│   ├── README.md                                # 插件包的说明文档
+│   └── description.json                         # 插件包的描述文件
+├── rsbuild.config.ts
+├── scripts                                      # 辅助打包插件的代码
+│   ├── build-plugin.ts
+│   └── test-plugin.ts
+└── tsconfig.json
+```
+
 ### 环境变量文件创建
 
 如果你在仓库根目录下没有`.env`文件，需要将`.env.template`复制到`.env`。
