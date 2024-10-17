@@ -5,7 +5,6 @@ import {
   NASLAppIR,
   ServiceMetaKind,
 } from "@lcap/nasl-unified-frontend-generator";
-import { Frontend } from "@lcap/nasl/index";
 import { Container, inject, injectable } from "inversify";
 
 export function setupMicrofrontend(container: Container) {
