@@ -1,5 +1,4 @@
 import {
-  GeneratorInfrastructureDomain,
   JavaScriptDomain,
   MicroFrontendPlugin,
   NASLAppIR,
@@ -22,8 +21,11 @@ export function setupMicrofrontend(container: Container) {
     }
   }
 
+  // 将MicroFrontendPlugin注入到MicroFrontendPlugin
+  // MicroFrontnedPlugin对象本身也可以作为一个注入标识符
   container.bind(MicroFrontendPlugin).to(MicroFrontendPlugin);
 
+  // 将ServiceMetaKind.MicroFrontendManager替换为MyMicroFrontendPlugin
   container
     .rebind(ServiceMetaKind.MicroFrontendManager)
     .to(MyMicroFrontendPlugin);
