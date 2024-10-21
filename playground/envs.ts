@@ -43,5 +43,6 @@ export const envs = {
   playgroundRoot: __dirname,
   outputFolder: process.env.OUTPUT_FOLDER || join(__dirname, "..", "./out"),
   TENANT_NAME: tenantName,
-  generatorConfig
+  generatorConfig,
+  legacyClientPath: process.env.LEGACY_CLIENT_PATH ?? null,
 };

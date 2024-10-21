@@ -55,7 +55,7 @@ export async function writeCode(commands: FileWriteCommand[]) {
     return fs.outputFile(realPath, content);
   }
   const logger = Logger("代码写入");
-  logger.info("开始写入output目录");
+  logger.info("开始写入输出目录");
   await Promise.all(
     commands.map((command) => {
       return writeFile(command);

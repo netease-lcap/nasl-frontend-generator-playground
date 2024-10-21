@@ -18,10 +18,11 @@ function outputFileFromJSONSync(
       throw new Error("文件路径必须以/开头");
     }
     const filePath = path.join(folder, k);
-    if (fileDict[k] === null) {
+    const val = fileDict[k];
+    if (val === null) {
       fs.removeSync(filePath);
-    } else if (fileDict[k] !== null) {
-      fs.outputFileSync(filePath, fileDict[k]);
+    } else {
+      fs.outputFileSync(filePath, val);
     }
   });
 }
@@ -38,23 +39,27 @@ export class GeneratorPluginLegacyAdaptor implements Adaption.Steps {
   private constructor(options: {
     container: NASLFrontendGeneratorContainer;
     clientPath: string;
+    outputPath: string;
   }) {
     this.container = options.container;
     this.sourceCodeDir = options.clientPath;
+    this.outputPath = options.outputPath;
   }
 
   static create(options: {
     container: NASLFrontendGeneratorContainer;
     clientPath: string;
+    outputPath: string;
   }): Pick<GeneratorPluginLegacyAdaptor, "execute"> {
     return new GeneratorPluginLegacyAdaptor(options);
   }
 
   private container: NASLFrontendGeneratorContainer;
   private sourceCodeDir: string;
+  private outputPath: string;
 
   async execute() {
-    const tempDir = path.join(this.sourceCodeDir, "../temp");
+    const tempDir = path.join(this.outputPath);
     return Promise.resolve(this)
       .then((step) =>
         step.copyFilesToGeneratorFS({
