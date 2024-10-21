@@ -48,20 +48,9 @@ export namespace GeneratorPluginAdaptor {
        */
       saveFileSystemToTempDir: (
         tempDir: string
-      ) => Promise<StepMoveTempDirToClientPath>;
+      ) => Promise<void>;
     }
 
-    /**
-     * 将临时目录移动到源代码文件夹
-     */
-    export interface StepMoveTempDirToClientPath {
-      /**
-       * 将临时目录移动到源代码文件夹
-       * @param tempDir 临时目录
-       * @returns 无返回值
-       */
-      moveTempDirToSourceCodeDir: (tempDir: string) => Promise<void>;
-    }
 
     /**
      * 遗留通路的文件系统适配步骤
@@ -69,7 +58,6 @@ export namespace GeneratorPluginAdaptor {
     export interface Steps
       extends StepCopyFilesToGeneratorFS,
         StepRunCodeGenerationLifecycleHooks,
-        StepSaveFileSystemToTempDir,
-        StepMoveTempDirToClientPath {}
+        StepSaveFileSystemToTempDir         {}
   }
 }

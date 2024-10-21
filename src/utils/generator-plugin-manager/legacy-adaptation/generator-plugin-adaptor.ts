@@ -68,8 +68,7 @@ export class GeneratorPluginLegacyAdaptor implements Adaption.Steps {
         })
       )
       .then((step) => step.runCodeGenerationLifecycleHooks())
-      .then((step) => step.saveFileSystemToTempDir(tempDir))
-      .then((step) => step.moveTempDirToSourceCodeDir(tempDir));
+      .then((step) => step.saveFileSystemToTempDir(tempDir));
   }
 
   async copyFilesToGeneratorFS({
@@ -111,9 +110,7 @@ export class GeneratorPluginLegacyAdaptor implements Adaption.Steps {
     return this;
   }
 
-  async saveFileSystemToTempDir(
-    tempDir: string
-  ): Promise<GeneratorPluginAdaptor.LegacyAdaption.StepMoveTempDirToClientPath> {
+  async saveFileSystemToTempDir(tempDir: string): Promise<void> {
     outputFileFromJSONSync(
       this.container
         .get<GeneratorInfrastructureDomain.FileSystemProvider>(
@@ -122,7 +119,6 @@ export class GeneratorPluginLegacyAdaptor implements Adaption.Steps {
         .toJSON(),
       tempDir
     );
-    return this;
   }
 
   async moveTempDirToSourceCodeDir(tempDir: string) {
