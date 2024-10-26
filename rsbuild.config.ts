@@ -1,4 +1,5 @@
 import { defineConfig } from "@rsbuild/core";
+import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 
 export default defineConfig({
   output: {
@@ -16,4 +17,5 @@ export default defineConfig({
       version: "legacy",
     },
   },
+  plugins: [pluginTypeCheck()],
 });

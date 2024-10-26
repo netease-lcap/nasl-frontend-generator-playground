@@ -45,10 +45,11 @@
     "typescript": "5.4.0-dev.20231207"
   },
   "devDependencies": {
-    "@lcap/nasl": "3.12.0-alpha.fix-type-1",
     "@abraham/reflection": "^0.12.0",
     "@inquirer/prompts": "^5.0.5",
+    "@lcap/nasl": "3.12.0-alpha.fix-type-1",
     "@rsbuild/core": "1.0.1-rc.4",
+    "@rsbuild/plugin-type-check": "^1.0.1",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.10.4",

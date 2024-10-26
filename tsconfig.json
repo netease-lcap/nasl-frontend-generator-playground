@@ -3,7 +3,7 @@
     "module": "Node16",
     "esModuleInterop": true,
     "target": "es2021",
-    "moduleResolution": "Node16",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
