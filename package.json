@@ -30,8 +30,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lcap/nasl": "3.11.0-beta.1",
-    "@lcap/nasl-unified-frontend-generator": "3.11.0-beta.1",
+    "@lcap/nasl-concepts": "3.12.0-alpha.fix-type-1",
+    "@lcap/nasl-unified-frontend-generator": "3.12.0-alpha.fix-type-1",
     "cors": "^2.8.5",
     "dedent": "^1.5.1",
     "dotenv": "^16.4.5",
@@ -45,6 +45,7 @@
     "typescript": "5.4.0-dev.20231207"
   },
   "devDependencies": {
+    "@lcap/nasl": "3.12.0-alpha.fix-type-1",
     "@abraham/reflection": "^0.12.0",
     "@inquirer/prompts": "^5.0.5",
     "@rsbuild/core": "1.0.1-rc.4",
