@@ -57,7 +57,7 @@ export function setupEslint(container: Container) {
         },
       });
       const res = this.fileSystemProvider.read("/package.json");
-      logger.info(res, "package.json内容");
+      logger.info(res?.toString(), "package.json内容");
     }
   }
 
