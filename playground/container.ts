@@ -1,4 +1,16 @@
 import { makeDefaultContainer } from "@lcap/nasl-unified-frontend-generator";
+import { setupAddConfigToWebpack } from './customization/custom-add-config';
+import { Container } from "inversify";
+
+async function getBuildTimes(container: Container) {
+  const res = await fetch('http://defaulttenant.lcap.codewave-dev.163yun.com/api/v1/env/config');
+  const data = await res.json();
+  return {
+    container,
+    extensions: data.result,
+  };
+}
+
 
 // 样例：修改默认容器中的内容。替换makeContainer为如下代码
 // import { setupPerformanceOptions } from "./customization/custom-performance";
@@ -16,5 +28,6 @@ import { makeDefaultContainer } from "@lcap/nasl-unified-frontend-generator";
 
 export async function makeContainer() {
   const container = makeDefaultContainer(); // 构造默认容器
-  return Promise.resolve(container);
+  // return Promise.resolve(container);
+  return Promise.resolve(container).then(getBuildTimes).then(setupAddConfigToWebpack);
 }

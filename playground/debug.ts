@@ -16,7 +16,7 @@ if (envs.legacyClientPath) {
     outputPath: envs.outputFolder,
   }).then(() => {
     logger.info("Vue应用源码插件结束");
-    process.exit(0);
+    // process.exit(0);
   });
 } else {
   const logger = Logger("翻译");
