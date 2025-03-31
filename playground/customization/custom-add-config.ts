@@ -48,6 +48,14 @@ export function setupAddConfigToWebpack({container, extensions}: {container: Con
                   {
                     from: path.resolve(__dirname, 'CubeModule.json'),
                     to: path.resolve(__dirname, 'dist'),
+                  },
+                  {
+                    from: path.resolve(__dirname, 'cordova'),
+                    to: path.resolve(__dirname, 'dist/cordova'),
+                  },
+                  {
+                    from: path.resolve(__dirname, 'cordova/cordova.js'),
+                    to: path.resolve(__dirname, 'dist'),
                   }
                 ]
               }]);
@@ -113,32 +121,25 @@ export function setupAddConfigToWebpack({container, extensions}: {container: Con
       const cordovaSourcePath = '../dependences/cordova';
       const cordovaDestPath = '/m/cordova';
       
-      // const copyFiles = (source: string, dest: string) => {
-      //   const items = readdirSync(source, { withFileTypes: true });
+      const copyFiles = (source: string, dest: string) => {
+        const items = readdirSync(source, { withFileTypes: true });
         
-      //   items.forEach(item => {
-      //     const sourcePath = path.join(source, item.name);
-      //     const destPath = path.join(dest, item.name);
+        items.forEach(item => {
+          const sourcePath = path.join(source, item.name);
+          const destPath = path.join(dest, item.name);
           
-      //     if (item.isDirectory()) {
-      //       // 如果是目录，先创建目录再递归处理
-      //       // this.fileSystemProvider.createDirectory(destPath);
-      //       copyFiles(sourcePath, destPath);
-      //     } else if (item.isFile()) {
-      //       // 如果是文件，直接复制
-      //       const content = readFileSync(sourcePath, 'utf-8');
-      //       this.fileSystemProvider.write(destPath, content);
-      //     }
-      //   });
-      // };
+          if (item.isDirectory()) {
+            // 如果是目录，先创建目录再递归处理
+            copyFiles(sourcePath, destPath);
+          } else if (item.isFile()) {
+            // 如果是文件，直接复制
+            const content = readFileSync(sourcePath, 'utf-8');
+            this.fileSystemProvider.write(destPath, content);
+          }
+        });
+      };
 
-      const content = readFileSync(path.join(__dirname, '../dependences/cordova/android/cordova.js'), 'utf-8');
-      this.fileSystemProvider.write('/m/cordova/cordova.js', content);
-
-      // 创建目标目录
-      // this.fileSystemProvider.createDirectory(cordovaDestPath);
-      // 开始复制
-      // copyFiles(path.join(__dirname, cordovaSourcePath), cordovaDestPath);
+      copyFiles(path.join(__dirname, cordovaSourcePath), cordovaDestPath);
     }
 
     afterAllFilesGenerated() {
@@ -146,11 +147,7 @@ export function setupAddConfigToWebpack({container, extensions}: {container: Con
       this.createCubeModuleJSON();
 
       // 注入cordova插件
-      // try {
-      //   this.injectCordovaDeps();
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      this.injectCordovaDeps();
 
       // 修改vue.config.js
       this.overrideVueConfig();
