@@ -7,6 +7,7 @@ import { glob } from "glob";
 import path from "path";
 import { NASLFrontendGeneratorContainer } from "../types";
 import { GeneratorPluginAdaptor } from "./legacy-adaptation-steps";
+const { isText } = require('istextorbinary');
 import Adaption = GeneratorPluginAdaptor.LegacyAdaption;
 
 function outputFileFromJSONSync(
@@ -89,10 +90,12 @@ export class GeneratorPluginLegacyAdaptor implements Adaption.Steps {
     })) {
       const realPath = path.join(sourceCodeDir, p);
       const pWithStartingSlash = `/${p}`;
-      fileSystem.write(
-        pWithStartingSlash,
-        fs.readFileSync(realPath).toString("utf-8")
-      );
+      if (isText(realPath)) {
+        fileSystem.write(pWithStartingSlash, fs.readFileSync(realPath).toString('utf-8'));
+      } else {
+          // @ts-ignore 3.11.x的文件系统在类型上不支持写入Buffer
+          fileSystem.write(pWithStartingSlash, fs.readFileSync(realPath));
+      }
     }
     return this;
   }
