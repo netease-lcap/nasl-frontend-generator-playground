@@ -16,21 +16,7 @@ export function setupMicrofrontend(container: Container) {
       private oldMicroFrontendPlugin: MicroFrontendPlugin
     ) {}
     producePublicPathScript(ir: NASLAppIR): string | undefined {
-      const framework = ir.configs.microApp?.framework;
-      if (framework === "qiankun") {
-        return `
-      if (window.__POWERED_BY_QIANKUN__) {
-        window.__webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
-      }
-      `;
-      } else if (framework === "wujie") {
-        return `
-      if (window.__POWERED_BY_WUJIE__) {
-        window.__webpack_public_path__ = window.__WUJIE_PUBLIC_PATH__;
-      }
-      `;
-      }
-      return undefined;
+      return this.oldMicroFrontendPlugin.producePublicPathScript(ir);
     }
     produceScript(ir: NASLAppIR): string {
       const oldScript = this.oldMicroFrontendPlugin.produceScript(ir);
