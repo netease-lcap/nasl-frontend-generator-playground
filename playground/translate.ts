@@ -83,7 +83,7 @@ export async function translate(
         const dict = project.getFileDict().files;
         const files = Object.entries(dict).map(([k, v]) => {
           const pathWithFrontend = lightJoin(`/${frontendName}`, k);
-          return { path: pathWithFrontend, content: v.code };
+          return { path: pathWithFrontend, content: v.code.toString() };
         });
         logger.info(files.map((x) => x.path));
         res.push(...files);
