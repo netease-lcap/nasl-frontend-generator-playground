@@ -48,7 +48,7 @@
     "@abraham/reflection": "^0.12.0",
     "@inquirer/prompts": "^5.0.5",
     "@lcap/nasl": "3.13.2-beta.11",
-    "@rsbuild/core": "1.0.1-rc.4",
+    "@rsbuild/core": "1.3.2",
     "@rsbuild/plugin-type-check": "^1.0.1",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.0",
