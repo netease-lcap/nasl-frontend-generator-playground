@@ -20,7 +20,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
       super(fileSystemProvider);
     }
 
-    private packageJSONPath = "/m/package.json";
+    private packageJSONPath = "/package.json";
     private readPkg(): PackageJSON | undefined {
       try {
         const pkg = this.fileSystemProvider.read(this.packageJSONPath);
@@ -33,7 +33,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
 
     private overrideVueConfig() {
       this.fileSystemProvider.write(
-        '/m/vue.config.js',
+        '/vue.config.js',
         dedent`const path = require('path');
         const CopyPlugin = require('copy-webpack-plugin');
         const fs = require('fs');
@@ -119,7 +119,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
 
     private overrideHTML() {
       this.fileSystemProvider.write(
-        '/m/public/index.html',
+        '/public/index.html',
         dedent`<!DOCTYPE html>
         <html lang="">
 
@@ -169,7 +169,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
 
 
     private updatePackageJSON() {
-      const packageJSONPath = "/m/package.json";
+      const packageJSONPath = "/package.json";
       const res = this.fileSystemProvider.read(packageJSONPath) ?? "{}";
       const json = JSON.parse(res);
       json.devDependencies["copy-webpack-plugin"] = "^6.4.1";
@@ -183,7 +183,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
       // 获取build和version信息
       // 创建CubeModule.json
       this.fileSystemProvider.write(
-        '/m/CubeModule.json',
+        '/CubeModule.json',
         JSON.stringify({
           name: packageJson?.name,
           identifier: packageJson?.name,
@@ -194,8 +194,8 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
     }
 
     private injectCordovaDeps() {
-      const cordovaSourcePath = '../dependences/cordova';
-      const cordovaDestPath = '/m/cordova';
+      const cordovaSourcePath = './dependences/cordova';
+      const cordovaDestPath = '/cordova';
 
       const copyFiles = (source: string, dest: string) => {
         const items = readdirSync(source, { withFileTypes: true });
@@ -229,7 +229,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
       const buff = Buffer.from(JSON.stringify(content))
       const hash = loaderUtils.getHashDigest(buff, 'md5', 'hex', 8)
       this.fileSystemProvider.write(
-        `/m/package-config.${hash}.js`,
+        `/package-config.${hash}.js`,
         dedent`
           window.PACKAGE_CONFIG = ${JSON.stringify(content, null, 2)};
         `
