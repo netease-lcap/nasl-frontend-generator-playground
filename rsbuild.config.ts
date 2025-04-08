@@ -7,6 +7,11 @@ export default defineConfig({
     minify: false,
     externals: ['pino', '@abraham/reflection'],
   },
+  server:{
+    publicDir:{
+      copyOnBuild: true
+    }
+  },
   source: {
     entry: {
       plugin: {
