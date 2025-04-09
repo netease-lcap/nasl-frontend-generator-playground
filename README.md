@@ -236,11 +236,11 @@ pnpm dev
 
 ### 翻译器插件的入口
 
-插件的入口在`playground/container.ts`中的`makeContainer`函数。
+插件的入口在`playground/container.ts`中的`applyCustomization`函数。
 
-这个函数的作用是返回注入了需要在翻译流程中用到的翻译器插件的容器。在真正翻译的时候，会调用`makeContainer`函数。
+这个函数的作用是返回注入了需要在翻译流程中用到的翻译器插件的容器。在真正翻译的时候，会调用`applyCustomization`函数。
 
-因此，只需要在`makeContainer`函数中注入你的插件或对已经注入的插件作修改，就能够改变翻译的行为。
+因此，只需要在`applyCustomization`函数中注入你的插件或对已经注入的插件作修改，就能够改变翻译的行为。
 
 如下，它启用了三个插件：
 
@@ -249,13 +249,11 @@ pnpm dev
 3. setupCompilerToWebpack
 
 ```ts
-import { makeDefaultContainer } from "@lcap/nasl-unified-frontend-generator";
 import { setupPerformanceOptions } from "./customization/customize-performance";
 import { setupNpmPackages } from "./customization/custom-npm-package";
 import { setupCompilerToWebpack } from "./customization/custom-compiler";
 
-export async function makeContainer() {
-  const container = makeDefaultContainer();
+export async function applyCustomization(container: Container) {
   return Promise.resolve(container)
     .then(setupPerformanceOptions)
     .then(setupNpmPackages)
