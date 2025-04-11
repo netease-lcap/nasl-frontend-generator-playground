@@ -5,7 +5,11 @@ export default defineConfig({
   output: {
     target: "node",
     minify: false,
-    externals: ['pino', '@abraham/reflection'],
+    externals: [
+      'pino', 
+      '@abraham/reflection',
+      'reflect-metadata',
+    ],
   },
   server:{
     publicDir:{
