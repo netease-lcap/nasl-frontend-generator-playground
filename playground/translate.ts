@@ -26,19 +26,6 @@ export async function translate(
   config: GeneratorConfig
 ): Promise<PathContent[]> {
   const logger = Logger("translate");
-  let container = makeDefaultContainer();
-
-  // 兼容旧版插件
-  // 旧版插件会提供一个用于生成 container 的方法
-  // if (makeContainer) {
-  //   container = await makeContainer();
-  // }
-
-  // 新版插件
-  // 新版插件会提供一个 applyCustomization 方法，用于执行自定义逻辑，接收一个 container，返回一个 container
-  if (applyCustomization) {
-    container = await applyCustomization(container);
-  }
 
   const { app, isFull, updatedModules } = await initApp(config);
 
@@ -51,6 +38,23 @@ export async function translate(
     if (frontendNode) {
       const kind = frontendNode.frameworkKind;
       const frontendName = frontendNode.name;
+
+      // 目前 defaultContainer 仅支持 react 和 vue3，
+      // 所以如果是 vue2 则使用 react 容器作为 defaultContainer
+      let container = makeDefaultContainer(kind === "vue2" ? "react": kind);
+
+      // 兼容旧版插件
+      // 旧版插件会提供一个用于生成 container 的方法
+      // if (makeContainer) {
+      //   container = await makeContainer();
+      // }
+
+      // 新版插件
+      // 新版插件会提供一个 applyCustomization 方法，用于执行自定义逻辑，接收一个 container，返回一个 container
+      if (applyCustomization) {
+        container = await applyCustomization(container);
+      }
+
       if (kind === "vue2") {
         (config as any).diffNodePaths = updatedModules;
         (config as any).isFull = isFull;
@@ -88,7 +92,7 @@ export async function translate(
         }
         const filesInObjectKey = transformFileNameToObjectKey(files);
         res.push(...filesInObjectKey);
-      } else if (kind === "react") {
+      } else if (["react", "vue3"].includes(kind)) {
         const project = await compileAsProject(
           app,
           frontendNode,
