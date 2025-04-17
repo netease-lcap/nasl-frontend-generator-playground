@@ -102,13 +102,14 @@ export class GeneratorPluginLegacyAdaptor implements Adaption.Steps {
 
   async runCodeGenerationLifecycleHooks(): Promise<Adaption.StepSaveFileSystemToTempDir> {
     if (this.container.isBound(ServiceMetaKind.CodeGenerationLifecycleHooks)) {
-      this.container
+      const hooks = this.container
         .getAll<GeneratorInfrastructureDomain.CodeGenerationLifecycleHooks>(
           ServiceMetaKind.CodeGenerationLifecycleHooks
-        )
-        .forEach((f) => {
-          f.afterAllFilesGenerated();
-        });
+        );
+
+      for (const h of hooks) {
+        await h.afterAllFilesGenerated();
+      }
     }
     return this;
   }
