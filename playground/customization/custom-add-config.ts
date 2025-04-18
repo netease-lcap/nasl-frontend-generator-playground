@@ -46,6 +46,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
         };
 
         module.exports = {
+          publicPath: '',
           configureWebpack(config) {
             if (process.env.NODE_ENV === "production") {
               config.devtool = false;
@@ -187,7 +188,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
         JSON.stringify({
           name: packageJson?.name,
           identifier: packageJson?.name,
-          build: extensions.times ?? 2,
+          build: extensions.times ?? 1,
           version: extensions.times ?? '1.0.0',
         }, null, 2)
       );
@@ -223,7 +224,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
       const content = {
         name: packageJson?.name,
         identifier: packageJson?.name,
-        build: extensions.times ?? 2,
+        build: extensions.times ?? 1,
         version: extensions.times ?? '1.0.0',
       };
       const buff = Buffer.from(JSON.stringify(content))

@@ -3,11 +3,18 @@ import { setupAddConfigToWebpack } from './customization/custom-add-config';
 import { Container } from "inversify";
 
 async function getBuildTimes(container: Container) {
-  const res = await fetch('http://defaulttenant.lcap.codewave-dev.163yun.com/api/v1/env/config');
-  const data = await res.json();
+  let data = {};
+  try {
+    const res = await fetch('https://dev-apitest-csforkf.lcap.codewave-test.163yun.com/rest/exportCount');
+    data = await res.json();
+  } catch (e) {
+    console.log(e);
+  }
+  // TODO
   return {
     container,
-    extensions: data.result,
+    // extensions: data.result,
+    extensions: {},
   };
 }
 
