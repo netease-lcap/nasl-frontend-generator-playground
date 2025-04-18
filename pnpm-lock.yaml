@@ -57,8 +57,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       '@lcap/nasl':
-        specifier: 3.13.2-beta.11
-        version: 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
+        specifier: 3.13.2-rc.5
+        version: 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
       '@rsbuild/core':
         specifier: 1.3.4
         version: 1.3.4
@@ -344,6 +344,9 @@ packages:
   '@jridgewell/sourcemap-codec@1.4.15':
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
 
+  '@jridgewell/sourcemap-codec@1.5.0':
+    resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
+
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
@@ -368,26 +371,17 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@lcap/nasl-breakpoint@3.13.2-beta.11':
-    resolution: {integrity: sha512-ldsIdiW/kWOEkMysHixrqGwTHbqRLsjndjAQhIlHQUHoSfsL++AH0/AB6yh+zpKXCL3S+1ajSfr53M/Oml85vg==}
-
   '@lcap/nasl-breakpoint@3.13.2-rc.5':
     resolution: {integrity: sha512-4CN5VmIgVKsKPnAeaC/uCeUqvqU+7Whu+Qk1ldVsSh4AJ3buOSdaU12Q17SBlb2rWbj/jU/Z8x3sbz/mOCGs3A==}
-
-  '@lcap/nasl-concepts@3.13.2-beta.11':
-    resolution: {integrity: sha512-Cbbi3QZM0fAcQh9Jpx0SG2eR5tEy4Gj+az2+pUPipPvE4FLKs4ceIoTzfewU0ms/s7MemBQV3wDotniaK6GbNw==}
 
   '@lcap/nasl-concepts@3.13.2-rc.5':
     resolution: {integrity: sha512-qq7uQ6ejoXy76+Du/lFjhV8b7HCS6zlO3yCtKHNxMSzBOVJjLTKjpNaFqYSdgN7kQQhPvnuurUn3NvDtaOF0uQ==}
 
-  '@lcap/nasl-language-server-core@3.13.2-beta.11':
-    resolution: {integrity: sha512-fsAcCuxIEnl97Xn/YaICNLkFPlwRBCL48n0mmJEIwv3zB8NdCd0Sjo1D7fCmER/6r7rnU+ndx/EwLjblHEOHJg==}
+  '@lcap/nasl-language-server-core@3.13.2-rc.5':
+    resolution: {integrity: sha512-tbGxHRfncZgaVr3imeZ/D5bztBYTcmE0HXHMv+Nw4pbjBLIHllFA3kcFtTCrdUMBg/3z6phnVXEyYO9hQZxJuw==}
 
-  '@lcap/nasl-log@3.13.2-beta.11':
-    resolution: {integrity: sha512-yb8GEdtoBMKFcHljPNH9mtzU4mfePkH0mJXAlqkcM4Be+iSS4oPsGiuqcYYztni6AhuIPZTGDxNysVfI/YqUTw==}
-
-  '@lcap/nasl-sentry@3.13.2-beta.11':
-    resolution: {integrity: sha512-WmJ9RUbrW2roz+LL1eQcWz0D9kwkEt80ZWOd55sE/p312zBPWv/0oGcSjNutcFjrw/GSwbv5dmYlcJQz1Ga2Dw==}
+  '@lcap/nasl-log@3.13.2-rc.5':
+    resolution: {integrity: sha512-/b1n3RuL6yIiUi+bokb+MaQQkZRNIcSj2o/GsoOkej+OICp7EzD8t0vhXz7X3Bt8+7akydhCgOo2AJrH4CJZUA==}
 
   '@lcap/nasl-sentry@3.13.2-rc.5':
     resolution: {integrity: sha512-FVjQVmVoX52HwiUfmHHTM1xzZiItX/uXrbsMTTNxacb+MVLJKEVmIvHLBjNy8qz0VoV9UWDx8uAmGYFecv5Ouw==}
@@ -395,35 +389,23 @@ packages:
   '@lcap/nasl-test-toolkit@1.0.0':
     resolution: {integrity: sha512-+nCkCo/dPjAmJQfjy5O+8b9E5oujdQyLiYKkMr5YwsTW3gAEiN4ovLhb/wf0a8eYSAsdAr6E3THZj9dpu/e0yA==}
 
-  '@lcap/nasl-translator@3.13.2-beta.11':
-    resolution: {integrity: sha512-Th6ZhnMdoFz2kyuNZaxkgidAy2AeBTg4SWApnNFxMK49Z1UpKPvbcOgGKT1LtxLWx0dnB9hS4M5Kzl6MJMQtrg==}
-
   '@lcap/nasl-translator@3.13.2-rc.5':
     resolution: {integrity: sha512-3odU0frECcX/UpNYxQLY6LFte1NnMzhyB3qVRqB9BxQWMpHFN/IG1vFbDlt347Ywi5AxrH1fkXl5B/2CNp019g==}
 
   '@lcap/nasl-tsconfig@1.0.1':
     resolution: {integrity: sha512-Y4gaz9S3RR5RAFYgs8obHkWIh/C+cyud9lAQQJ8mfmDaKJWQbY2IOUgbbAFP/xORC4G3qDVTqgRv7YjOJdutgw==}
 
-  '@lcap/nasl-types@3.13.2-beta.11':
-    resolution: {integrity: sha512-rzY5R8WBcz5wPx9n/jom3BDV10gmCjBclA23+nAvXtdxFKguovSrq6Gs007N3riUbJtdPY5cYW+OG9lwXWyZIQ==}
-
   '@lcap/nasl-types@3.13.2-rc.5':
     resolution: {integrity: sha512-ZzNnbZaXCjXeUYEuKQkcbT5UboN2XnzYY/6VX1pZ5DJq8sWAYmhz7DblwsDZV5IyoS63T7SGgOkk9P9k94Yc6g==}
-
-  '@lcap/nasl-unified-frontend-generator@3.13.2-beta.11':
-    resolution: {integrity: sha512-Pwpy/zjIVczREgbVJJgHdGpSndCND2XByEKVNNQ2uUSIDk/EKGYsVtfSQsJWWGPQY6lyT3GV3EWvvQgl5Il6Yw==}
 
   '@lcap/nasl-unified-frontend-generator@3.13.2-rc.5':
     resolution: {integrity: sha512-bd1TbamhWOXNpQWsgnTrYPD7t3WBuUdsCNDdZ14rcOwm9mPht3dODe4DgUM6ud5KlhwePno5J1129Q0Jcv6Sbw==}
 
-  '@lcap/nasl-utils@3.13.2-beta.11':
-    resolution: {integrity: sha512-1TWnhJj6HyEm1TW+A9coibc93RgP66l7rTLm/Qk8/O1LcTG4b3o5ey9TZtKbXUiYFpCqfXNwYAPCD3JE3u04kg==}
-
   '@lcap/nasl-utils@3.13.2-rc.5':
     resolution: {integrity: sha512-7onGzvV3XV1c28peIbongTxcdpkK3eYX1/pdWQlpSo0mHpesbVfaSeTXUEryGVdu66eLPNmpPJkMBcjKPXcRHA==}
 
-  '@lcap/nasl@3.13.2-beta.11':
-    resolution: {integrity: sha512-j9llOcW9vV639QDRTfkyFG+QsTPDTFuAX+VCwhAyllbqA0sGXGp53yQPBYnbtfSkJ5PbWQiVBTMsW32fTO6nKw==}
+  '@lcap/nasl@3.13.2-rc.5':
+    resolution: {integrity: sha512-juvvmfPfhGtaGkgRo77adOyhmtNAljfp5FVJAbERFaQJt+1c9s8eLD15zbthPJNW+I5pZloOGmr7f1TqvWf0vg==}
     engines: {node: '>=16.20'}
 
   '@module-federation/error-codes@0.11.2':
@@ -658,6 +640,35 @@ packages:
 
   '@types/wrap-ansi@3.0.0':
     resolution: {integrity: sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==}
+
+  '@vue/compiler-core@3.4.33':
+    resolution: {integrity: sha512-MoIREbkdPQlnGfSKDMgzTqzqx5nmEjIc0ydLVYlTACGBsfvOJ4tHSbZXKVF536n6fB+0eZaGEOqsGThPpdvF5A==}
+
+  '@vue/compiler-dom@3.4.33':
+    resolution: {integrity: sha512-GzB8fxEHKw0gGet5BKlpfXEqoBnzSVWwMnT+dc25wE7pFEfrU/QsvjZMP9rD4iVXHBBoemTct8mN0GJEI6ZX5A==}
+
+  '@vue/compiler-sfc@3.4.33':
+    resolution: {integrity: sha512-7rk7Vbkn21xMwIUpHQR4hCVejwE6nvhBOiDgoBcR03qvGqRKA7dCBSsHZhwhYUsmjlbJ7OtD5UFIyhP6BY+c8A==}
+
+  '@vue/compiler-ssr@3.4.33':
+    resolution: {integrity: sha512-0WveC9Ai+eT/1b6LCV5IfsufBZ0HP7pSSTdDjcuW302tTEgoBw8rHVHKPbGUtzGReUFCRXbv6zQDDgucnV2WzQ==}
+
+  '@vue/reactivity@3.4.33':
+    resolution: {integrity: sha512-B24QIelahDbyHipBgbUItQblbd4w5HpG3KccL+YkGyo3maXyS253FzcTR3pSz739OTphmzlxP7JxEMWBpewilA==}
+
+  '@vue/runtime-core@3.4.33':
+    resolution: {integrity: sha512-6wavthExzT4iAxpe8q37/rDmf44nyOJGISJPxCi9YsQO+8w9v0gLCFLfH5TzD1V1AYrTAdiF4Y1cgUmP68jP6w==}
+
+  '@vue/runtime-dom@3.4.33':
+    resolution: {integrity: sha512-iHsMCUSFJ+4z432Bn9kZzHX+zOXa6+iw36DaVRmKYZpPt9jW9riF32SxNwB124i61kp9+AZtheQ/mKoJLerAaQ==}
+
+  '@vue/server-renderer@3.4.33':
+    resolution: {integrity: sha512-jTH0d6gQcaYideFP/k0WdEu8PpRS9MF8d0b6SfZzNi+ap972pZ0TNIeTaESwdOtdY0XPVj54XEJ6K0wXxir4fw==}
+    peerDependencies:
+      vue: 3.4.33
+
+  '@vue/shared@3.4.33':
+    resolution: {integrity: sha512-aoRY0jQk3A/cuvdkodTrM4NMfxco8n55eG4H7ML/CRy7OryHfiqvug4xrCBBMbbN+dvXAetDDwZW9DXWWjBntA==}
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -972,6 +983,9 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
+  csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+
   date-fns@2.6.0:
     resolution: {integrity: sha512-F55YxqRdEfP/eYQmQjLN798v0AwLjmZ8nMBjdQvNwEE3N/zWVrlkkqT+9seBlPlsbkybG4JmWg3Ee3dIV9BcGQ==}
 
@@ -1062,6 +1076,10 @@ packages:
     resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
     engines: {node: '>=10.13.0'}
 
+  entities@4.5.0:
+    resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
+
   error-ex@1.3.2:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
 
@@ -1095,6 +1113,9 @@ packages:
   estraverse@5.3.0:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
+
+  estree-walker@2.0.2:
+    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
   event-target-shim@5.0.1:
     resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
@@ -1420,6 +1441,9 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
+  magic-string@0.30.17:
+    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
+
   make-error@1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
 
@@ -1591,6 +1615,10 @@ packages:
 
   postcss@8.4.21:
     resolution: {integrity: sha512-tP7u/Sn/dVxK2NnruI4H9BG+x+Wxz6oeZ1cJ8P6G/PZY0IKk4k/63TDsQf2kQq3+qoJeLm2kIBUNlZe3zgb4Zg==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.5.3:
+    resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
   prettier@2.8.8:
@@ -1961,6 +1989,14 @@ packages:
   vue@2.6.14:
     resolution: {integrity: sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==}
     deprecated: Vue 2 has reached EOL and is no longer actively maintained. See https://v2.vuejs.org/eol/ for more details.
+
+  vue@3.4.33:
+    resolution: {integrity: sha512-VdMCWQOummbhctl4QFMcW6eNtXHsFyDlX60O/tsSQuCcuDOnJ1qPOhhVla65Niece7xq/P2zyZReIO5mP+LGTQ==}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   watchpack@2.4.2:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
@@ -2394,6 +2430,8 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.4.15': {}
 
+  '@jridgewell/sourcemap-codec@1.5.0': {}
+
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
@@ -2420,20 +2458,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@lcap/nasl-breakpoint@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
-    dependencies:
-      '@lcap/nasl-concepts': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      lodash: 4.17.21
-      socket.io-client: 2.4.0
-      socket.io-parser: 3.3.4
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - supports-color
-      - typescript
-      - utf-8-validate
-
   '@lcap/nasl-breakpoint@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
       '@lcap/nasl-concepts': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
@@ -2447,20 +2471,6 @@ snapshots:
       - supports-color
       - typescript
       - utf-8-validate
-
-  '@lcap/nasl-concepts@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
-    dependencies:
-      '@lcap/nasl-sentry': 3.13.2-beta.11
-      '@lcap/nasl-translator': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      compare-versions: 4.1.3
-      json5: 2.2.3
-      lodash: 4.17.21
-      uuid: 8.3.2
-    transitivePeerDependencies:
-      - debug
-      - typescript
 
   '@lcap/nasl-concepts@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
@@ -2476,23 +2486,18 @@ snapshots:
       - debug
       - typescript
 
-  '@lcap/nasl-language-server-core@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl-language-server-core@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
-      '@lcap/nasl-concepts': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-concepts': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
       lodash: 4.17.21
+      vue: 3.4.33(typescript@5.4.0-dev.20231207)
     transitivePeerDependencies:
       - debug
       - typescript
 
-  '@lcap/nasl-log@3.13.2-beta.11': {}
-
-  '@lcap/nasl-sentry@3.13.2-beta.11':
-    dependencies:
-      axios: 1.6.2
-    transitivePeerDependencies:
-      - debug
+  '@lcap/nasl-log@3.13.2-rc.5': {}
 
   '@lcap/nasl-sentry@3.13.2-rc.5':
     dependencies:
@@ -2501,15 +2506,6 @@ snapshots:
       - debug
 
   '@lcap/nasl-test-toolkit@1.0.0': {}
-
-  '@lcap/nasl-translator@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
-    dependencies:
-      '@lcap/nasl-test-toolkit': 1.0.0
-      '@lcap/nasl-tsconfig': 1.0.1
-      '@lcap/nasl-types': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-    transitivePeerDependencies:
-      - typescript
 
   '@lcap/nasl-translator@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
@@ -2522,43 +2518,11 @@ snapshots:
 
   '@lcap/nasl-tsconfig@1.0.1': {}
 
-  '@lcap/nasl-types@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
-    dependencies:
-      ts-essentials: 9.4.2(typescript@5.4.0-dev.20231207)
-    transitivePeerDependencies:
-      - typescript
-
   '@lcap/nasl-types@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
       ts-essentials: 9.4.2(typescript@5.4.0-dev.20231207)
     transitivePeerDependencies:
       - typescript
-
-  '@lcap/nasl-unified-frontend-generator@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
-    dependencies:
-      '@abraham/reflection': 0.12.0
-      '@lcap/nasl-breakpoint': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-concepts': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-translator': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      axios: 1.6.2
-      html-escaper: 3.0.3
-      inversify: 6.0.2
-      json5: 2.2.3
-      light-join: 1.3.0
-      lodash: 4.17.21
-      memfs: 4.14.1
-      pino: 8.17.2
-      postcss: 8.4.21
-      postcss-js: 4.0.1(postcss@8.4.21)
-      prettier: 2.8.8
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - supports-color
-      - typescript
-      - utf-8-validate
 
   '@lcap/nasl-unified-frontend-generator@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
@@ -2586,13 +2550,6 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@lcap/nasl-utils@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
-    dependencies:
-      '@lcap/nasl-types': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      uuid: 8.3.2
-    transitivePeerDependencies:
-      - typescript
-
   '@lcap/nasl-utils@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
       '@lcap/nasl-types': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
@@ -2600,7 +2557,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@lcap/nasl@3.13.2-beta.11(typescript@5.4.0-dev.20231207)':
+  '@lcap/nasl@3.13.2-rc.5(typescript@5.4.0-dev.20231207)':
     dependencies:
       '@abraham/reflection': 0.12.0
       '@babel/core': 7.22.15
@@ -2609,15 +2566,15 @@ snapshots:
       '@babel/preset-typescript': 7.22.15(@babel/core@7.22.15)
       '@babel/traverse': 7.24.1
       '@babel/types': 7.24.0
-      '@lcap/nasl-breakpoint': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-concepts': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-language-server-core': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-log': 3.13.2-beta.11
-      '@lcap/nasl-sentry': 3.13.2-beta.11
-      '@lcap/nasl-translator': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-types': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-unified-frontend-generator': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
-      '@lcap/nasl-utils': 3.13.2-beta.11(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-breakpoint': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-concepts': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-language-server-core': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-log': 3.13.2-rc.5
+      '@lcap/nasl-sentry': 3.13.2-rc.5
+      '@lcap/nasl-translator': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-types': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-unified-frontend-generator': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
+      '@lcap/nasl-utils': 3.13.2-rc.5(typescript@5.4.0-dev.20231207)
       '@types/validator': 13.12.2
       axios: 1.6.2
       chai: 4.3.7
@@ -2640,6 +2597,7 @@ snapshots:
       undici: 6.21.0
       uuid: 8.3.2
       validator: 13.7.0
+      vue: 3.4.33(typescript@5.4.0-dev.20231207)
       vue-template-compiler: 2.6.14
     transitivePeerDependencies:
       - bufferutil
@@ -2855,6 +2813,60 @@ snapshots:
   '@types/validator@13.12.2': {}
 
   '@types/wrap-ansi@3.0.0': {}
+
+  '@vue/compiler-core@3.4.33':
+    dependencies:
+      '@babel/parser': 7.26.1
+      '@vue/shared': 3.4.33
+      entities: 4.5.0
+      estree-walker: 2.0.2
+      source-map-js: 1.2.1
+
+  '@vue/compiler-dom@3.4.33':
+    dependencies:
+      '@vue/compiler-core': 3.4.33
+      '@vue/shared': 3.4.33
+
+  '@vue/compiler-sfc@3.4.33':
+    dependencies:
+      '@babel/parser': 7.26.1
+      '@vue/compiler-core': 3.4.33
+      '@vue/compiler-dom': 3.4.33
+      '@vue/compiler-ssr': 3.4.33
+      '@vue/shared': 3.4.33
+      estree-walker: 2.0.2
+      magic-string: 0.30.17
+      postcss: 8.5.3
+      source-map-js: 1.2.1
+
+  '@vue/compiler-ssr@3.4.33':
+    dependencies:
+      '@vue/compiler-dom': 3.4.33
+      '@vue/shared': 3.4.33
+
+  '@vue/reactivity@3.4.33':
+    dependencies:
+      '@vue/shared': 3.4.33
+
+  '@vue/runtime-core@3.4.33':
+    dependencies:
+      '@vue/reactivity': 3.4.33
+      '@vue/shared': 3.4.33
+
+  '@vue/runtime-dom@3.4.33':
+    dependencies:
+      '@vue/reactivity': 3.4.33
+      '@vue/runtime-core': 3.4.33
+      '@vue/shared': 3.4.33
+      csstype: 3.1.3
+
+  '@vue/server-renderer@3.4.33(vue@3.4.33(typescript@5.4.0-dev.20231207))':
+    dependencies:
+      '@vue/compiler-ssr': 3.4.33
+      '@vue/shared': 3.4.33
+      vue: 3.4.33(typescript@5.4.0-dev.20231207)
+
+  '@vue/shared@3.4.33': {}
 
   '@webassemblyjs/ast@1.12.1':
     dependencies:
@@ -3192,6 +3204,8 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  csstype@3.1.3: {}
+
   date-fns@2.6.0: {}
 
   dateformat@4.6.3: {}
@@ -3277,6 +3291,8 @@ snapshots:
       graceful-fs: 4.2.11
       tapable: 2.2.1
 
+  entities@4.5.0: {}
+
   error-ex@1.3.2:
     dependencies:
       is-arrayish: 0.2.1
@@ -3303,6 +3319,8 @@ snapshots:
   estraverse@4.3.0: {}
 
   estraverse@5.3.0: {}
+
+  estree-walker@2.0.2: {}
 
   event-target-shim@5.0.1: {}
 
@@ -3592,6 +3610,10 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
+  magic-string@0.30.17:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+
   make-error@1.3.6: {}
 
   memfs@3.5.3:
@@ -3764,6 +3786,12 @@ snapshots:
       postcss: 8.4.21
 
   postcss@8.4.21:
+    dependencies:
+      nanoid: 3.3.11
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.3:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -4124,6 +4152,16 @@ snapshots:
       vue: 2.6.14
 
   vue@2.6.14: {}
+
+  vue@3.4.33(typescript@5.4.0-dev.20231207):
+    dependencies:
+      '@vue/compiler-dom': 3.4.33
+      '@vue/compiler-sfc': 3.4.33
+      '@vue/runtime-dom': 3.4.33
+      '@vue/server-renderer': 3.4.33(vue@3.4.33(typescript@5.4.0-dev.20231207))
+      '@vue/shared': 3.4.33
+    optionalDependencies:
+      typescript: 5.4.0-dev.20231207
 
   watchpack@2.4.2:
     dependencies:
