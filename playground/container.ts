@@ -4,12 +4,12 @@ import { Container } from "inversify";
 
 async function getBuildTimes(container: Container) {
   let data = {};
-  try {
-    const res = await fetch('https://dev-apitest-csforkf.lcap.codewave-test.163yun.com/rest/exportCount');
-    data = await res.json();
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   const res = await fetch('https://dev-apitest-csforkf.lcap.codewave-test.163yun.com/rest/exportCount');
+  //   data = await res.json();
+  // } catch (e) {
+  //   console.log(e);
+  // }
   // TODO
   return {
     container,

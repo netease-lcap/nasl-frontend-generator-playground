@@ -170,7 +170,9 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
 
 
     private updatePackageJSON() {
-      const packageJSONPath = "/package.json";
+      // MOCK
+      const packageJSONPath = "/m/package.json";
+      // const packageJSONPath = "/package.json";
       const res = this.fileSystemProvider.read(packageJSONPath) ?? "{}";
       const json = JSON.parse(res);
       json.devDependencies["copy-webpack-plugin"] = "^6.4.1";
