@@ -1,6 +1,6 @@
-import { defineConfig, rspack } from "@rsbuild/core";
+import { defineConfig } from "@rsbuild/core";
+import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 import path from 'node:path';
-
 
 export default defineConfig({
   // plugins: [
@@ -14,13 +14,22 @@ export default defineConfig({
   output: {
     target: "node",
     minify: false,
-    externals: ['pino', '@abraham/reflection'],
     copy: [
       {
         from: path.resolve(__dirname, './playground/customization/dependences'),
         to: "dependences",
       },
-    ]
+    ],
+    externals: [
+      'pino', 
+      '@abraham/reflection',
+      'reflect-metadata',
+    ],
+  },
+  server:{
+    publicDir:{
+      copyOnBuild: true
+    }
   },
   source: {
     entry: {
@@ -32,4 +41,5 @@ export default defineConfig({
       version: "legacy",
     },
   },
+  plugins: [pluginTypeCheck()],
 });

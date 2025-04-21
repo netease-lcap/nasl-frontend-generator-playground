@@ -34,8 +34,8 @@ async function pack() {
 }
 
 function getIdeVersion() {
-  // 读取package.json中的@lcap/nasl包version, 计算ideVersion
-  const naslVersion = packageJSON.dependencies["@lcap/nasl"];
+  // 读取package.json中的@lcap/nasl-concepts包version, 计算ideVersion
+  const naslVersion = packageJSON.dependencies["@lcap/nasl-concepts"];
   const semVer = new SemVer(naslVersion);
   // 将ideVersion格式化为x.y
   semVer.prerelease = [];

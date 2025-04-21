@@ -1,14 +1,11 @@
-import {
-  compileAsProject,
-  Frontend,
-  genBundleFiles,
-  Logger
-} from "@lcap/nasl";
+import type { Frontend } from "@lcap/nasl-concepts";
 import { lightJoin } from "light-join";
 import { makeContainer } from "./container";
 import { envs } from "./envs";
 import { GeneratorConfig } from "./types";
 import { loadNaslCompilerObject, tempUtils } from "./utils";
+import { Logger, compileAsProject } from "@lcap/nasl-unified-frontend-generator";
+import { genBundleFiles } from "@lcap/nasl";
 
 export type PathContent = { path: string; content: string };
 
@@ -44,7 +41,7 @@ export async function translate(
         (config as any).isFull = isFull;
         type NameContent = { name: string; content: string };
         // 生成bundle文件，返回文件以及路径
-        const files: NameContent[] = genBundleFiles(
+        const files: NameContent[] = await genBundleFiles(
           app,
           frontendNode,
           config as any
@@ -86,7 +83,7 @@ export async function translate(
         const dict = project.getFileDict().files;
         const files = Object.entries(dict).map(([k, v]) => {
           const pathWithFrontend = lightJoin(`/${frontendName}`, k);
-          return { path: pathWithFrontend, content: v.code };
+          return { path: pathWithFrontend, content: v.code.toString() };
         });
         logger.info(files.map((x) => x.path));
         res.push(...files);

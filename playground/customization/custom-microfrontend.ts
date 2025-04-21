@@ -15,6 +15,9 @@ export function setupMicrofrontend(container: Container) {
       @inject(MicroFrontendPlugin)
       private oldMicroFrontendPlugin: MicroFrontendPlugin
     ) {}
+    producePublicPathScript(ir: NASLAppIR): string | undefined {
+      return this.oldMicroFrontendPlugin.producePublicPathScript(ir);
+    }
     produceScript(ir: NASLAppIR): string {
       const oldScript = this.oldMicroFrontendPlugin.produceScript(ir);
       return `/** 微前端脚本开始 */\n${oldScript} /** 微前端脚本结束 */`;
