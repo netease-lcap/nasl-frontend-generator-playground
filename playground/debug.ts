@@ -51,6 +51,9 @@ Promise.resolve()
         logger.info("翻译结束");
       });
   })
+  .catch((err) => {
+    console.error(err);
+  })
   .finally(() => {
     process.exit(0);
   });

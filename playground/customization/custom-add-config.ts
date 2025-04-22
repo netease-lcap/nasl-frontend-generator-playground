@@ -1,14 +1,22 @@
-import { LifeCycleHooksPlugin, ServiceMetaKind, JavaScriptDomain, GeneratorInfrastructureDomain } from "@lcap/nasl-unified-frontend-generator";
+import { 
+  LifeCycleHooksPlugin, 
+  ServiceMetaKind, 
+  JavaScriptDomain, 
+  GeneratorInfrastructureDomain,
+  CommonAppConfig 
+} from "@lcap/nasl-unified-frontend-generator";
 import { injectable, inject, Container } from "inversify";
 import dedent from "dedent";
-import { readdir, readdirSync, readFile, readFileSync } from "fs";
+import { readdirSync, readFileSync } from "fs";
 import path from "path";
 // @ts-ignore
 import loaderUtils from 'loader-utils';
+import md5 from 'md5';
+import type { App, Frontend } from '@lcap/nasl-concepts';
 
 export type PackageJSON = Record<string, any>;
 
-export function setupAddConfigToWebpack({ container, extensions }: { container: Container, extensions: any }) {
+export function setupAddConfigToWebpack(container: Container) {
   @injectable()
   class AddConfigPlugin extends LifeCycleHooksPlugin {
     constructor(
@@ -23,7 +31,7 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
     private packageJSONPath = "/package.json";
     private readPkg(): PackageJSON | undefined {
       try {
-        const pkg = this.fileSystemProvider.read(this.packageJSONPath);
+        const pkg = this.fileSystemProvider.read(this.packageJSONPath) as string;
         if (pkg) {
           return JSON.parse(pkg);
         }
@@ -173,14 +181,14 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
       // MOCK
       const packageJSONPath = "/m/package.json";
       // const packageJSONPath = "/package.json";
-      const res = this.fileSystemProvider.read(packageJSONPath) ?? "{}";
+      const res = (this.fileSystemProvider.read(packageJSONPath) ?? "{}") as string;
       const json = JSON.parse(res);
       json.devDependencies["copy-webpack-plugin"] = "^6.4.1";
       json.devDependencies["glob"] = "^11.0.1";
       this.fileSystemProvider.write(packageJSONPath, JSON.stringify(json, null, 2));
     }
 
-    private createCubeModuleJSON() {
+    private createCubeModuleJSON(times: number) {
       // 获取package.json信息
       const packageJson = this.readPkg();
       // 获取build和version信息
@@ -190,8 +198,8 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
         JSON.stringify({
           name: packageJson?.name,
           identifier: packageJson?.name,
-          build: extensions.times ?? 1,
-          version: extensions.times ?? '1.0.0',
+          build: times ? times + 1 : 1,
+          version: times ? `1.0.${times  + 1}` : '1.0.0',
         }, null, 2)
       );
     }
@@ -221,13 +229,13 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
       copyFiles(path.join(__dirname, cordovaSourcePath), cordovaDestPath);
     }
 
-    private injectPackageConfig() {
+    private injectPackageConfig(times: number) {
       const packageJson = this.readPkg();
       const content = {
         name: packageJson?.name,
         identifier: packageJson?.name,
-        build: extensions.times ?? 1,
-        version: extensions.times ?? '1.0.0',
+        build: times ? times + 1 : 1,
+        version: times ? `1.0.${times  + 1}` : '1.0.0',
       };
       const buff = Buffer.from(JSON.stringify(content))
       const hash = loaderUtils.getHashDigest(buff, 'md5', 'hex', 8)
@@ -238,16 +246,48 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
         `
       );
     }
+    private appId = '';
+    preProcess(app: App, frontend: Frontend, config: CommonAppConfig) {
+      this.appId = app.id;
+      return { app, frontend, config };
+    }
 
-    afterAllFilesGenerated() {
+    async getBuildTimes() {
+      let times = 0;
+      try {
+        const ak = 'testAk';
+        const timestamp = `${Math.floor(Date.now() / 1000)}`;
+        const signature = md5(ak + 'qknzjiqnngzokfaksdjfebljziapjnfal' + timestamp);
+        const res = await fetch(
+          // TODO
+          `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=${this.appId}`,
+          // `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=dfdad2c9-c8ed-4051-bf8f-85143da8e64b`,
+          {
+            method: 'GET',
+            headers: {
+              ak,
+              timestamp,
+              signature,
+            },
+          });
+        times = await res.json();
+      } catch (e) {
+        console.log(e);
+      }
+      return times
+    }
+
+    async afterAllFilesGenerated() {
+      const times = await this.getBuildTimes();
+
       // 创建 CubeModule.json
-      this.createCubeModuleJSON();
+      this.createCubeModuleJSON(times);
 
       // 注入cordova插件
       this.injectCordovaDeps();
 
       // 注入package-config.json
-      this.injectPackageConfig();
+      this.injectPackageConfig(times);
 
       // 修改package.json
       this.updatePackageJSON();
@@ -260,11 +300,18 @@ export function setupAddConfigToWebpack({ container, extensions }: { container: 
     }
   }
 
+  // 创建一个插件实例并直接绑定，确保使用同一个实例
+  const pluginInstance = new AddConfigPlugin(
+    container.get(ServiceMetaKind.FileSystemProvider),
+    container.get(ServiceMetaKind.NpmPackageJSONManager),
+  );
+
+  container.bind(ServiceMetaKind.IRPreProcesser).toConstantValue(pluginInstance);
   container
     .bind<GeneratorInfrastructureDomain.CodeGenerationLifecycleHooks>(
       ServiceMetaKind.CodeGenerationLifecycleHooks
     )
-    .to(AddConfigPlugin);
+    .toConstantValue(pluginInstance);
 
   return container;
 }
