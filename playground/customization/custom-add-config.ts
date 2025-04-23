@@ -17,6 +17,7 @@ import type { App, Frontend } from '@lcap/nasl-concepts';
 export type PackageJSON = Record<string, any>;
 
 export function setupAddConfigToWebpack(container: Container) {
+  
   @injectable()
   class AddConfigPlugin extends LifeCycleHooksPlugin {
     constructor(
@@ -26,17 +27,6 @@ export function setupAddConfigToWebpack(container: Container) {
       private npmPackageJSONManagerPlugin: JavaScriptDomain.FrontendApplicationDomain.NpmPackageJSONManager,
     ) {
       super(fileSystemProvider);
-    }
-
-    private packageJSONPath = "/package.json";
-    private readPkg(): PackageJSON | undefined {
-      try {
-        const pkg = this.fileSystemProvider.read(this.packageJSONPath) as string;
-        if (pkg) {
-          return JSON.parse(pkg);
-        }
-      } catch (error) { }
-      return undefined;
     }
 
     private overrideVueConfig() {
@@ -179,8 +169,8 @@ export function setupAddConfigToWebpack(container: Container) {
 
     private updatePackageJSON() {
       // MOCK
-      const packageJSONPath = "/m/package.json";
-      // const packageJSONPath = "/package.json";
+      // const packageJSONPath = "/m/package.json";
+      const packageJSONPath = "/package.json";
       const res = (this.fileSystemProvider.read(packageJSONPath) ?? "{}") as string;
       const json = JSON.parse(res);
       json.devDependencies["copy-webpack-plugin"] = "^6.4.1";
@@ -189,15 +179,13 @@ export function setupAddConfigToWebpack(container: Container) {
     }
 
     private createCubeModuleJSON(times: number) {
-      // 获取package.json信息
-      const packageJson = this.readPkg();
       // 获取build和version信息
       // 创建CubeModule.json
       this.fileSystemProvider.write(
         '/CubeModule.json',
         JSON.stringify({
-          name: packageJson?.name,
-          identifier: packageJson?.name,
+          name: this.appName,
+          identifier: this.appName,
           build: times ? times + 1 : 1,
           version: times ? `1.0.${times  + 1}` : '1.0.0',
         }, null, 2)
@@ -230,10 +218,9 @@ export function setupAddConfigToWebpack(container: Container) {
     }
 
     private injectPackageConfig(times: number) {
-      const packageJson = this.readPkg();
       const content = {
-        name: packageJson?.name,
-        identifier: packageJson?.name,
+        name: this.appName,
+        identifier: this.appName,
         build: times ? times + 1 : 1,
         version: times ? `1.0.${times  + 1}` : '1.0.0',
       };
@@ -247,8 +234,10 @@ export function setupAddConfigToWebpack(container: Container) {
       );
     }
     private appId = '';
+    private appName = '';
     preProcess(app: App, frontend: Frontend, config: CommonAppConfig) {
       this.appId = app.id;
+      this.appName = app.name;
       return { app, frontend, config };
     }
 
