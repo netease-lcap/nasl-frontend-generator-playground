@@ -249,8 +249,8 @@ export function setupAddConfigToWebpack(container: Container) {
         const signature = md5(ak + 'qknzjiqnngzokfaksdjfebljziapjnfal' + timestamp);
         const res = await fetch(
           // TODO
-          `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=${this.appId}`,
-          // `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=dfdad2c9-c8ed-4051-bf8f-85143da8e64b`,
+          // `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=${this.appId}`,
+          `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=75725a43-9567-4d62-8baa-fdd11f790c0a`,
           {
             method: 'GET',
             headers: {
@@ -259,7 +259,7 @@ export function setupAddConfigToWebpack(container: Container) {
               signature,
             },
           });
-        times = await res.json();
+        times = await res.text() as unknown as number;
       } catch (e) {
         console.log(e);
       }
