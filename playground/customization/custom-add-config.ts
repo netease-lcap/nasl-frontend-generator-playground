@@ -242,15 +242,15 @@ export function setupAddConfigToWebpack(container: Container) {
     }
 
     async getBuildTimes() {
-      let times = 0;
+      let times = '';
       try {
         const ak = 'testAk';
         const timestamp = `${Math.floor(Date.now() / 1000)}`;
-        const signature = md5(ak + 'qknzjiqnngzokfaksdjfebljziapjnfal' + timestamp);
+        const signature = md5(ak + 'ajkdhfulzkjbnflakqlkbalkdhfz' + timestamp);
         const res = await fetch(
           // TODO
-          // `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=${this.appId}`,
-          `http://dev.jobinfo.dogfood.lcap.163yun.com/rest/exportCount?appId=75725a43-9567-4d62-8baa-fdd11f790c0a`,
+          // `http://openapi.boe.com.cn/rest/exportCount?appId=${this.appId}`,
+          `http://openapi.boe.com.cn/rest/exportCount?appId=${this.appId}`,
           {
             method: 'GET',
             headers: {
@@ -259,11 +259,11 @@ export function setupAddConfigToWebpack(container: Container) {
               signature,
             },
           });
-        times = await res.text() as unknown as number;
+        times = await res.text();
       } catch (e) {
         console.log(e);
       }
-      return times
+      return times ? parseInt(times) : 1;
     }
 
     async afterAllFilesGenerated() {
