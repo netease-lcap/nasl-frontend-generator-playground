@@ -21,6 +21,7 @@ type TranslatorPluginDescription = {
 };
 
 async function build() {
+  prebuild();
   const config = await loadConfig();
   const rsbuild = await createRsbuild({ rsbuildConfig: config.content });
   await rsbuild.build();
@@ -88,3 +89,21 @@ async function main() {
 }
 
 main();
+
+function prebuild() {
+  console.log("\x1b[32m%s\x1b[0m", "Nasl相关的依赖包版本");
+
+  const deps = {
+    ...packageJSON.dependencies,
+    ...packageJSON.devDependencies,
+  }
+
+  Object.keys(deps).forEach((name => {
+    if (name.includes('nasl')) {
+      // 读取版本号
+      const version = (deps as Record<string, string>)[name];
+      // 输出日志
+      console.log("\x1b[32m%s\x1b[0m", `- ${name}: ${version}`);
+    }
+  }));
+}
