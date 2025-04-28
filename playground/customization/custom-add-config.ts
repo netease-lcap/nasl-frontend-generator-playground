@@ -264,7 +264,7 @@ export function setupAddConfigToWebpack(container: Container) {
         const res = await fetch(
           // TODO
           // `http://openapi.boe.com.cn/rest/exportCount?appId=${this.appId}`,
-          `http://openapi.boe.com.cn/rest/exportCount?appId=${this.appId}`,
+          `http://lc-svc-openapi-online-boe-1.ns-boe:8080/rest/exportCount?appId=${this.appId}`,
           {
             method: 'GET',
             headers: {
