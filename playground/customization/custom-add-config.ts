@@ -235,10 +235,24 @@ export function setupAddConfigToWebpack(container: Container) {
     }
     private appId = '';
     private appName = '';
+    private host = '';
     preProcess(app: App, frontend: Frontend, config: CommonAppConfig) {
       this.appId = app.id;
       this.appName = app.name;
+      const configGroups = app.configuration.groups || [];
+      const customConfig = configGroups.find((group) => group.name === 'custom')?.properties || [];
+      this.host = customConfig.find((item) => item.name === 'h5Host')?.values?.find((item) => item.env === 'online')?.value || '';
       return { app, frontend, config };
+    }
+
+    injectHostConfig() {
+      // MOCK
+      // const platformConfigPath = '/m/src/platform.config.json';
+      const platformConfigPath = '/src/platform.config.json';
+      const res = (this.fileSystemProvider.read(platformConfigPath) ?? "{}") as string;
+      const json = JSON.parse(res);
+      json.sysPrefixPath = this.host;
+      this.fileSystemProvider.write(platformConfigPath, JSON.stringify(json, null, 2));
     }
 
     async getBuildTimes() {
@@ -277,6 +291,9 @@ export function setupAddConfigToWebpack(container: Container) {
 
       // 注入package-config.json
       this.injectPackageConfig(times);
+
+      // 注入host 
+      this.injectHostConfig();
 
       // 修改package.json
       this.updatePackageJSON();
