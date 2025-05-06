@@ -31,6 +31,8 @@ export function setupAddConfigToWebpack(container: Container) {
 
     private overrideVueConfig() {
       this.fileSystemProvider.write(
+        // MOCK
+        // '/m/vue.config.js',
         '/vue.config.js',
         dedent`const path = require('path');
         const CopyPlugin = require('copy-webpack-plugin');
@@ -48,6 +50,12 @@ export function setupAddConfigToWebpack(container: Container) {
           configureWebpack(config) {
             if (process.env.NODE_ENV === "production") {
               config.devtool = false;
+            }
+            // 根据构建模式注入vconsole
+            if (process.env.NODE_ENV === 'development') {
+              config.entry = {
+                app: ['./src/vconsole.js'].concat(config.entry.app)
+              }
             }
           },
           chainWebpack: config => {
@@ -116,8 +124,20 @@ export function setupAddConfigToWebpack(container: Container) {
       );
     }
 
+    private overrideVConsole() {
+      this.fileSystemProvider.write(
+        // MOCK
+        // '/m/src/vconsole.js',
+        '/src/vconsole.js',
+        dedent`import VConsole from 'vconsole';
+        new VConsole();`
+      );
+    }
+
     private overrideHTML() {
       this.fileSystemProvider.write(
+        // MOCK
+        // '/m/public/index.html',
         '/public/index.html',
         dedent`<!DOCTYPE html>
         <html lang="">
@@ -175,6 +195,12 @@ export function setupAddConfigToWebpack(container: Container) {
       const json = JSON.parse(res);
       json.devDependencies["copy-webpack-plugin"] = "^6.4.1";
       json.devDependencies["glob"] = "^11.0.1";
+      json.devDependencies["vconsole"] = "^3.15.1";
+      // 添加构建脚本
+      json.scripts = {
+        ...json.scripts,
+        "build:dev": "vue-cli-service build --mode development",
+      };
       this.fileSystemProvider.write(packageJSONPath, JSON.stringify(json, null, 2));
     }
 
@@ -183,6 +209,8 @@ export function setupAddConfigToWebpack(container: Container) {
       // 创建CubeModule.json
       this.fileSystemProvider.write(
         '/CubeModule.json',
+        // MOCK
+        // '/m/CubeModule.json',
         JSON.stringify({
           name: this.appName,
           identifier: this.appName,
@@ -194,6 +222,9 @@ export function setupAddConfigToWebpack(container: Container) {
 
     private injectCordovaDeps() {
       const cordovaSourcePath = './dependences/cordova';
+
+      // MOCK
+      // const cordovaDestPath = '/m/cordova';
       const cordovaDestPath = '/cordova';
 
       const copyFiles = (source: string, dest: string) => {
@@ -227,6 +258,9 @@ export function setupAddConfigToWebpack(container: Container) {
       const buff = Buffer.from(JSON.stringify(content))
       const hash = loaderUtils.getHashDigest(buff, 'md5', 'hex', 8)
       this.fileSystemProvider.write(
+        // MOCK 
+        // `/m/package-config.${hash}.js`,
+
         `/package-config.${hash}.js`,
         dedent`
           window.PACKAGE_CONFIG = ${JSON.stringify(content, null, 2)};
@@ -260,7 +294,7 @@ export function setupAddConfigToWebpack(container: Container) {
       try {
         const ak = 'testAk';
         const timestamp = `${Math.floor(Date.now() / 1000)}`;
-        const signature = md5(ak + 'ajkdhfulzkjbnflakqlkbalkdhfz' + timestamp);
+        const signature = md5(ak + 'ajkdhfulzkjbnflakqlkbalkdhfzp' + timestamp);
         const res = await fetch(
           // TODO
           // `http://openapi.boe.com.cn/rest/exportCount?appId=${this.appId}`,
@@ -300,6 +334,9 @@ export function setupAddConfigToWebpack(container: Container) {
 
       // 修改vue.config.js
       this.overrideVueConfig();
+
+      // 修改vconsole.js
+      this.overrideVConsole();
 
       // 修改index.html
       this.overrideHTML();
