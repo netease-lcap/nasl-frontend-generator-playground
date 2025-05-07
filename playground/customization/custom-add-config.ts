@@ -270,9 +270,11 @@ export function setupAddConfigToWebpack(container: Container) {
     private appId = '';
     private appName = '';
     private host = '';
+    private frontendType: 'pc' | 'h5' = 'h5';
     preProcess(app: App, frontend: Frontend, config: CommonAppConfig) {
       this.appId = app.id;
       this.appName = app.name;
+      this.frontendType = frontend.type;
       const configGroups = app.configuration.groups || [];
       const customConfig = configGroups.find((group) => group.name === 'custom')?.properties || [];
       this.host = customConfig.find((item) => item.name === 'h5Host')?.values?.find((item) => item.env === 'online')?.value || '';
@@ -315,6 +317,10 @@ export function setupAddConfigToWebpack(container: Container) {
     }
 
     async afterAllFilesGenerated() {
+      if (this.frontendType === 'pc') {
+        return;
+      }
+      
       const times = await this.getBuildTimes();
 
       // 创建 CubeModule.json
