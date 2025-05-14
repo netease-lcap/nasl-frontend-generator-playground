@@ -199,7 +199,8 @@ export function setupAddConfigToWebpack(container: Container) {
       // 添加构建脚本
       json.scripts = {
         ...json.scripts,
-        "build:dev": "vue-cli-service build --mode development",
+        "build": "vue-cli-service build && cd dist && zip -r ../dist.zip . && cd ..",
+        "build:dev": "vue-cli-service build --mode development && cd dist && zip -r ../dist.zip . && cd ..",
       };
       this.fileSystemProvider.write(packageJSONPath, JSON.stringify(json, null, 2));
     }
