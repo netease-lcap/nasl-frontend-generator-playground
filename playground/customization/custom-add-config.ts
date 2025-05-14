@@ -196,11 +196,14 @@ export function setupAddConfigToWebpack(container: Container) {
       json.devDependencies["copy-webpack-plugin"] = "^6.4.1";
       json.devDependencies["glob"] = "^11.0.1";
       json.devDependencies["vconsole"] = "^3.15.1";
+      json.devDependencies['archiver'] = '^7.0.0';
+      json.devDependencies['fs-extra'] = '^11.0.0';
       // 添加构建脚本
       json.scripts = {
         ...json.scripts,
-        "build": "vue-cli-service build && cd dist && zip -r ../dist.zip . && cd ..",
-        "build:dev": "vue-cli-service build --mode development && cd dist && zip -r ../dist.zip . && cd ..",
+        "zip": "node ./zip.js",
+        "build": "vue-cli-service build && npm run zip",
+        "build:dev": "vue-cli-service build --mode development && npm run zip",
       };
       this.fileSystemProvider.write(packageJSONPath, JSON.stringify(json, null, 2));
     }
@@ -219,6 +222,45 @@ export function setupAddConfigToWebpack(container: Container) {
           version: times ? `1.0.${times  + 1}` : '1.0.0',
         }, null, 2)
       );
+    }
+
+    private createZipJS() {
+      this.fileSystemProvider.write(
+        '/zip.js',
+        dedent`
+          const archiver = require('archiver');
+          const fs = require('fs-extra');
+          const path = require('path');
+
+          async function zipDist() {
+            const distPath = path.join(__dirname, 'dist');
+            const zipPath = path.join(__dirname, 'dist.zip');
+
+            if (!(await fs.pathExists(distPath))) {
+              console.error('Error: dist directory does not exist. Run *npm run build* first.');
+              process.exit(1);
+            }
+
+            const output = fs.createWriteStream(zipPath);
+            const archive = archiver('zip', { zlib: { level: 9 } });
+
+            output.on('close', () => {
+              console.log('Successfully created!');
+            });
+
+            archive.on('error', (err) => {
+              console.error('Error creating zip file:', err);
+              process.exit(1);
+            });
+
+            archive.pipe(output);
+            archive.directory(distPath, false);
+            await archive.finalize();
+          }
+
+          zipDist();
+        `
+      )
     }
 
     private injectCordovaDeps() {
@@ -345,6 +387,8 @@ export function setupAddConfigToWebpack(container: Container) {
       // 修改vconsole.js
       this.overrideVConsole();
 
+      // 增加压缩配置
+      this.createZipJS();
       // 修改index.html
       this.overrideHTML();
     }
