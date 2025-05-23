@@ -263,6 +263,32 @@ export function setupAddConfigToWebpack(container: Container) {
       )
     }
 
+    private createDockerfile() {
+      this.fileSystemProvider.write(
+        '/Dockerfile',
+        dedent`
+          sudo chmod 777 /usr/local/bin/linux-x64-67_binding.node
+          npm config set sass_binary_path=/usr/local/bin/linux-x64-67_binding.node
+          cd ./m
+          npm install --legacy-peer-deps -q
+          npm run build
+        `
+      )
+    }
+
+    private createBuildBash() {
+      this.fileSystemProvider.write(
+        '/build.sh',
+        dedent`
+          sudo chmod 777 /usr/local/bin/linux-x64-67_binding.node
+          npm config set sass_binary_path=/usr/local/bin/linux-x64-67_binding.node
+          cd ./m
+          npm install --legacy-peer-deps -q
+          npm run build
+        `
+      )
+    }
+
     private injectCordovaDeps() {
       const cordovaSourcePath = './dependences/cordova';
 
@@ -389,6 +415,13 @@ export function setupAddConfigToWebpack(container: Container) {
 
       // 增加压缩配置
       this.createZipJS();
+
+      // 创建Dockerfile
+      this.createDockerfile();
+
+      // 创建build.sh
+      this.createBuildBash();
+      
       // 修改index.html
       this.overrideHTML();
     }
