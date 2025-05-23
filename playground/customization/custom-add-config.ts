@@ -385,10 +385,31 @@ export function setupAddConfigToWebpack(container: Container) {
       return times ? parseInt(times) : 1;
     }
 
+    private updatePrettierrc() {
+      // MOCK
+      // const packageJSONPath = "/m/package.json";
+      const packageJSONPath = "/.prettierrc.js";
+      this.fileSystemProvider.write(packageJSONPath,
+        dedent`
+          module.exports = {
+            printWidth: 140,
+            useTabs: false,
+            trailingComma: 'all',
+            tabWidth: 2,
+            semi: true,
+            singleQuote: true
+          };
+        `
+      );
+    }
+
     async afterAllFilesGenerated() {
       if (this.frontendType === 'pc') {
+        this.updatePrettierrc();
         return;
       }
+
+      this.updatePrettierrc();
       
       const times = await this.getBuildTimes();
 
