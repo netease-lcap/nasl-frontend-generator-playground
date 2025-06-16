@@ -202,8 +202,8 @@ export function setupAddConfigToWebpack(container: Container) {
       json.scripts = {
         ...json.scripts,
         "zip": "node ./zip.js",
-        "build": "vue-cli-service build && npm run zip",
-        "build:dev": "vue-cli-service build --mode development && npm run zip",
+        "build": "vue-cli-service build && node bin/prefix.js && npm run zip",
+        "build:dev": "vue-cli-service build --mode development && node bin/prefix.js && npm run zip",
       };
       this.fileSystemProvider.write(packageJSONPath, JSON.stringify(json, null, 2));
     }
