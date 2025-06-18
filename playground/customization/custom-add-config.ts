@@ -356,8 +356,47 @@ export function setupAddConfigToWebpack(container: Container) {
       const platformConfigPath = '/src/platform.config.json';
       const res = (this.fileSystemProvider.read(platformConfigPath) ?? "{}") as string;
       const json = JSON.parse(res);
-      json.sysPrefixPath = this.host;
+      // FIXME 目前配置方式无法完整的拼接全与端相关的统一前缀，e.g. 前缀为 /demo 时，针对于m端不会构建出 /demo/m 前缀
+      json.sysPrefixPath = this.host + json.sysPrefixPath;
       this.fileSystemProvider.write(platformConfigPath, JSON.stringify(json, null, 2));
+    }
+
+    private overridePrefixJS() {
+      const platformConfigStr = this.fileSystemProvider.read('/src/platform.config.json') as string;
+      const platformConfig = JSON.parse(platformConfigStr);
+      // const basePath = (platformConfig?.basePath as string).startsWith('/') ? (platformConfig?.basePath as string).slice(1) : '';
+      const basePath = platformConfig?.basePath as string || '/';
+      this.fileSystemProvider.write(
+        // MOCK
+        // '/m/bin/prefix.js',
+        '/bin/prefix.js',
+        dedent`
+          const fs = require('fs');
+          const path = require('path');
+
+          const distFolderPath = 'dist'; // 替换为你的构建后文件夹路径
+          const indexFilePath = path.join(distFolderPath, 'index.html');
+          const prefix = '${basePath}'; // 替换为你的前缀
+          fs.readFile(indexFilePath, 'utf8', (err, data) => {
+              if (err) {
+                  console.error('Error reading file:', err);
+                  return;
+              }
+              data = data.replace(/(?:href)="((?:js|css)\/[^"]+)"/g, 'href="' + prefix + '/' + '$1"')
+              data = data.replace(/(?:src)="((?:js|css)\/[^"]+)"/g, 'src="' + prefix + '/' + '$1"')
+              data = data.replace(/(?:src)="((?:package-config)[^"]+)"/g, 'src="' + prefix + '/' + '$1"')
+              data = data.replace('href="favicon.ico"', 'href="' + prefix + '/favicon.ico"')
+
+              fs.writeFile(indexFilePath, data, 'utf8', (err) => {
+                  if (err) {
+                      console.error('Error writing file:', err);
+                      return;
+                  }
+                  console.log('File updated successfully!');
+              });
+          });
+        `
+      )
     }
 
     async getBuildTimes() {
@@ -430,6 +469,9 @@ export function setupAddConfigToWebpack(container: Container) {
 
       // 修改vue.config.js
       this.overrideVueConfig();
+
+      // 修改 bin/prefix.js
+      this.overridePrefixJS();
 
       // 修改vconsole.js
       this.overrideVConsole();
