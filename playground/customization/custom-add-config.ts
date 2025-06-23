@@ -78,6 +78,10 @@ export function setupAddConfigToWebpack(container: Container) {
                     from: path.resolve(__dirname, getPackageConfigPath()),
                     to: path.resolve(__dirname, 'dist/' + getPackageConfigPath()),
                   },
+                  {
+                    from: path.resolve(__dirname, 'public'),
+                    to: path.resolve(__dirname, 'dist'),
+                  }
                 ]
               }]);
 
@@ -350,7 +354,7 @@ export function setupAddConfigToWebpack(container: Container) {
       return { app, frontend, config };
     }
 
-    injectHostConfig() {
+    private injectHostConfig() {
       // MOCK
       // const platformConfigPath = '/m/src/platform.config.json';
       const platformConfigPath = '/src/platform.config.json';
@@ -359,6 +363,34 @@ export function setupAddConfigToWebpack(container: Container) {
       // FIXME 目前配置方式无法完整的拼接全与端相关的统一前缀，e.g. 前缀为 /demo 时，针对于m端不会构建出 /demo/m 前缀
       json.sysPrefixPath = this.host + json.sysPrefixPath;
       this.fileSystemProvider.write(platformConfigPath, JSON.stringify(json, null, 2));
+    }
+
+    private delComponentsDeps() {
+      const map = new Map<string, string>();
+      const packageJSONPath = "/package.json";
+      const res = (this.fileSystemProvider.read(packageJSONPath) ?? "{}") as string;
+      const json = JSON.parse(res);
+      if (json.dependencies) {
+        Object.keys(json.dependencies).forEach((key) => {
+          if (json.dependencies[key].startsWith('./lcap_modules/')) {
+            if (!key.startsWith('@lcap')) {
+              // 处理路径 ./lcap_modules/ => /lcap_modules/
+              const formatPath = json.dependencies[key].replace('./lcap_modules/', '/lcap_modules/');
+              map.set(key, formatPath);
+              json.dependencies[key] = json.dependencies[key].split('@')[1].split('/')[0];
+            }
+          }
+        });
+      }
+      this.fileSystemProvider.write(packageJSONPath, JSON.stringify(json, null, 2));
+      // 删除lcap_modules文件夹下的非@lcap 文件夹
+      try {
+        map.forEach((value, key) => {
+          this.fileSystemProvider.remove(value);
+        })
+      } catch (error) {
+        console.log('del file error：', error);
+      }
     }
 
     private overridePrefixJS() {
@@ -443,12 +475,14 @@ export function setupAddConfigToWebpack(container: Container) {
     }
 
     async afterAllFilesGenerated() {
+      this.updatePrettierrc();
+
+      //  将前端依赖库从源码中剔除
+      this.delComponentsDeps();
+
       if (this.frontendType === 'pc') {
-        this.updatePrettierrc();
         return;
       }
-
-      this.updatePrettierrc();
       
       const times = await this.getBuildTimes();
 
