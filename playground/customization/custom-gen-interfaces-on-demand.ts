@@ -164,7 +164,7 @@ export function genInterfacesOnDemand(container: Container) {
         ],
       }));`;
 
-      vueConfigCode.replace(/(configureWebpack\s*\(\s*config\s*\)\s*\{)(\s*\n)/, `$1$2  ${pluginInitCode}\n`);
+      vueConfigCode = vueConfigCode.replace(/(configureWebpack\s*\(\s*config\s*\)\s*\{)(\s*\n)/, `$1$2  ${pluginInitCode}\n`);
       this.fileSystemProvider.write(
         "/vue.config.js",
         vueConfigCode
