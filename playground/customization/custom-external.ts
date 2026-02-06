@@ -37,7 +37,7 @@ export function customizeExternal(container: Container) {
         vueConfigCode = vueConfigCode.toString();
 
         // 添加 externals 配置到 configureWebpack 中
-        // TODO
+        // TODO：添加实际需要剔除的依赖名和全局变量名映射
         const externalConfig = `
     config.externals = {
       'vue': 'Vue',
@@ -57,13 +57,13 @@ export function customizeExternal(container: Container) {
       }
 
       // 如果是主应用，可以在 html 中插入 external 对应的 script 标签
-      // TODO
+      // TODO：修改 main 为实际主应用的 id
       if (this.appId === 'main') {
         let indexHtmlCode = this.fileSystemProvider.read("/public/index.html");
         if (indexHtmlCode) {
           indexHtmlCode = indexHtmlCode.toString();
 
-          // TODO
+          // TODO：添加实际需要剔除的依赖的资源文件链接
           const externalScripts = `
       <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/vue-router@3/dist/vue-router.js"></script>`;
